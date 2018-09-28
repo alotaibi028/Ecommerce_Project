@@ -32,7 +32,7 @@
                 <div class="header-mid-left">
                     <h1 class="logo">
                         <a href="index.php">
-                            <img src="assets/images/logo.png" alt="logo">
+                            <img src="assets/images/logo.PNG" alt="logo">
                         </a>
                     </h1>
                     <div class="header-search">
