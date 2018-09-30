@@ -81,6 +81,7 @@
                         </li>
                         <li class="menu-item "><a href="#">About US</a></li>
                         <li class="menu-item"><a href="#">Contact Us</a></li>
+						<li class="menu-item"><a href="#">Test</a></li>
 
                     </ul>
                 </nav>
