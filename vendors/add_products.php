@@ -1,4 +1,4 @@
-<?php include '../includes/$_REQUEST.php';
+<?php include '../includes/config.php';
 
 
 $query = "select * from producttypes";
