@@ -55,65 +55,46 @@ if(isset($_REQUEST['submit'])){
 ?>
 
 <?php include "header.php"; ?>
-
 <style>
-    #addForm input[type="text"],#addForm input[type="number"],#addForm textarea,#addForm select{
-        width: 60% !important;
+    .secBox label{
+        margin-left: 3% !important;
     }
-    label{
-        padding: 0px 20px;
-        margin-right: 10%;
+    .subBtn{
+        margin-right: 25%;
     }
-    .secBox{
-        width: 55%;
-        padding: 10px;
-    }
-    .secBox input,select,textarea{
-        float: right;
-    }
-    .subBtn input{
-        width: 20% !important;
-        padding: 10px;
-        margin-left: 18%;
-        background-color: #4ebae3;
-        border-color: #4ebae3;
-        color: #ffffff;
-    }
-
 </style>
+
 <div class="container">
-    <section style="width: 80%; margin-left: 28%; margin-top: 5%">
-        <h2>Add Product</h2><br>
-        <form method="post" id="addForm"action="add_products.php" enctype="multipart/form-data">
+    <section style="width: 80%; margin-left: 28%; margin-right: 28%; margin-top: 5%">
+        <h2><?php echo $lang['add_products']; ?></h2><br>
+        <form method="post" id="addForm" action="add_products.php" enctype="multipart/form-data">
 
             <div class="secBox">
-                <label>Product Name:</label>
-                <input type="text" id="name" name="pname" placeholder="Enter Product Name"/>
-            </div>
+                <label><?php echo $lang['product_name']; ?>:</label>
+                <input type="text" id="name" name="pname" placeholder="<?php echo $lang['enter_product_name']; ?>"/>
+            </div><br>
 
             <div class="secBox">
-                <label>Description:</label>
-                <textarea id="desc" name="pdesc" placeholder="Enter Product Description"></textarea>
-            </div>
+                <label><?php echo $lang['description']; ?>:</label>
+                <textarea id="desc" name="pdesc" placeholder="<?php echo $lang['enter_product_desc']; ?>"></textarea>
+            </div><br>
 
             <div class="secBox">
-                <div>
-                    <label>Price</label>
-                    <input type="number" name="pprice" id="price" placeholder="Enter Price"/>
-                </div>
-                <div>
-                    <label>Discount (%)</label>
-                    <input type="number" id="price" name="pdiscount" placeholder="Discount %"/>
-                </div>
-            </div>
+                    <label><?php echo $lang['price']; ?></label>
+                    <input type="number" name="pprice" id="price" placeholder="<?php echo $lang['enter_product_price']; ?>"/>
+            </div><br>
+            <div class="secBox">
+                    <label><?php echo $lang['discount']; ?> (%)</label>
+                    <input type="number" id="price" name="pdiscount" placeholder="<?php echo $lang['discount']; ?> %"/>
+            </div><br>
 
             <div class="secBox">
-                <label>Product Image:</label>
+                <label><?php echo $lang['product_image']; ?>:</label>
                 <input type="file" id="prodImg" name="pimg"/>
-            </div>
+            </div><br>
 
             <div  class="secBox">
-                <label>Product Type:</label>
+                <label><?php echo $lang['product_type']; ?>:</label>
                 <select style="height: auto" name="ptype">
                     <?php
                         while($row = $result -> fetch_array()){
@@ -121,15 +102,15 @@ if(isset($_REQUEST['submit'])){
                         }
                     ?>
                 </select>
-            </div>
+            </div><br>
 
             <div  class="secBox">
-                <label>Available Stock:</label>
+                <label><?php echo $lang['available_stock']; ?>:</label>
                 <input type="number" name="pstock">
-            </div>
+            </div><br>
 
             <div  class="secBox">
-                <label>Delivery Options:</label>
+                <label><?php echo $lang['delivery_option']; ?>:</label>
                 <select style="height: auto" name="pdelivery">
                     <?php
                     while($row1 = $result1 -> fetch_array()){
@@ -137,13 +118,13 @@ if(isset($_REQUEST['submit'])){
                     }
                     ?>
                 </select>
-            </div>
+            </div><br>
 
             <div  class="subBtn">
-                <input type="submit" name="submit" value="Add Product"/>
+                <input type="submit" name="submit" value="<?php echo $lang['add']; ?>"/>
             </div>
 
-        </form>
+        </form><br><br><br>
     </section>
 </div>
 <?php include '../vendors/footer.php'?>

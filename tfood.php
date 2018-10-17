@@ -60,14 +60,14 @@ $resultTr = mysqli_query($con, $queryTraditional);
                         <a href="product_detail.php?prodId=<?php echo $rowTr['id']; ?>"
                            class="feature-slide-name"><?php echo $rowTr['name']; ?>
                             <span style="font-size: 12px;">
-											(Delivery: <?php echo $rowD2['types']; ?>)</span></a>
+											(<?php echo $lang['delivery']; ?>: <?php echo $rowD2['types']; ?>)</span></a>
                         <div class="feature-slide-cost">
-                            <span class="price">Price: <?php echo $rowTr['price']; ?></span>
+                            <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowTr['price']; ?></span>
                         </div>
                     </div>
                 <?php }
             }else{
-                echo '<br><br><h2 style="margin: 20px 0px; margin-left: 45%">No Product Available</h2><br><br>';
+                echo '<br><br><h2 class="no_msg" style="">'.$lang['no_product'].'</h2><br><br>';
             }
             ?>
         </div>

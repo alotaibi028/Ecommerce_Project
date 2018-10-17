@@ -1,8 +1,18 @@
 <?php include 'includes/config.php';
     session_start();
+    if(!isset($_SESSION['lang'])){
+        $_SESSION['lang'] = 'english';
+    }
+    require 'core/init.php';
 ?>
 <!DOCTYPE html>
-<html lang='en'>
+<?php
+    if($_SESSION['lang'] == 'arabic'){
+        echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ar" dir="rtl">';
+    }else{
+        echo '<html lang="en">';
+    }
+?>
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -19,11 +29,32 @@
         <div class="header-top">
             <div class="container">
                 <div class="header-top-right">
-                    <p>
-                          <a href="#">Register</a>
-                          <span style="color: #4ebae3;">or</span>
-                          <a href="#">Login</a>
+                    <p style="margin-right: 75px;">
+                        <?php if(isset($_SESSION['u_id'])){
+                            echo '<div class="dropdown" style="margin-right: 80px;margin-top: 2px"><a href="#">Welcome, '.$_SESSION['u_fname'].'</a>';
+                            echo '<div class="dropdown-content" style="margin-left: 30px;margin-top: 8px"><a href="logout.php">LogOut</a></div></div>';
+                        }else{?>
+                            <a href="register.php"><?php echo $lang['register']; ?></a>
+                            <span style="color: #4ebae3;">or</span>
+                            <a href="login.php"><?php echo $lang['login']; ?></a>
+                        <?php } ?>
                     </p>
+                    <div class="dropdown">
+                        <?php if($_SESSION['lang'] === 'english'){?>
+                            <a href="?lang=english"><button>English</button></a>
+                        <?php }else{?>
+                            <a href="?lang=arabic"><button>العربية</button></a>
+                        <?php } ?>
+                            <div class="dropdown-content">
+                            <?php if($_SESSION['lang'] === 'english'){ ?>
+                                <a href="?lang=arabic">العربية</a>
+                            <?php }else{  ?>
+                                <a href="?lang=english">English</a>
+                            <?php } ?>
+                            </div>
+
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,12 +63,12 @@
                 <div class="header-mid-left">
                     <h1 class="logo">
                         <a href="index.php">
-                            <img src="assets/images/logo.PNG" alt="logo">
+                            <img src="assets/images/logo.png" alt="logo">
                         </a>
                     </h1>
                     <div class="header-search">
                         <form action="form.php" class="form form-search-header">
-                            <input type="text" placeholder="Search...">
+                            <input type="text" placeholder="<?php echo $lang['search']; ?>...">
                             <button class="button-search"><i class="flaticon-search"></i></button>
                         </form>
                     </div>
@@ -47,7 +78,7 @@
                         <div class="cart-menu">
                             <a href="cart.php">
                                 <i class="flaticon-commerce"></i>
-                                Cart
+                                <?php echo $lang['cart']; ?>
                                 <?php
                                 $total_quantity = 0;
                                 $total_price = 0;
@@ -68,21 +99,21 @@
         <div class="menu-primary">
             <div class="container">
                 <a href="#primary-navigation" class="menu-button primary-navigation-button">
-                    <span class="flaticon-bars"></span>Main Menu
+                    <span class="flaticon-bars"></span><?php echo $lang['main_menu']; ?>
                 </a>
                 <nav id="primary-navigation" class="site-navigation main-menu">
                     <ul id="primary-menu" class="menu">
                         <li class="menu-item ">
-                            <a href="index.php">Home</a>
+                            <a href="index.php"><?php echo $lang['home']; ?></a>
                         </li>
-                        <li class="menu-item"><a href="desserts.php">Dessert</a></li>
-                        <li class="menu-item"><a href="baked.php">Baked</a></li>
-                        <li class="menu-item"><a href="tfood.php">Traditional Food</a>
-                        </li>
-                        <li class="menu-item "><a href="#">About US</a></li>
-                        <li class="menu-item"><a href="#">Contact Us</a></li>
-						<li class="menu-item"><a href="#">Test</a></li>
-
+                        <li class="menu-item"><a href="desserts.php"><?php echo $lang['dessert']; ?></a></li>
+                        <li class="menu-item"><a href="baked.php"><?php echo $lang['baked']; ?></a></li>
+                        <li class="menu-item"><a href="tfood.php"><?php echo $lang['tr_food']; ?></a></li>
+                        <?php if(isset($_SESSION['u_id'])){ ?>
+                            <li class="menu-item"><a href="track_order.php"><?php echo $lang['track_order']; ?></a></li>
+                        <?php }?>
+                        <li class="menu-item "><a href="#"><?php echo $lang['about_us']; ?></a></li>
+                        <li class="menu-item"><a href="#"><?php echo $lang['contact_us']; ?></a></li>
                     </ul>
                 </nav>
             </div>

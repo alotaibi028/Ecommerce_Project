@@ -116,7 +116,7 @@ ul, ol {
   margin: 0;
   padding: 0;
 }
-input[type="text"] {
+input[type="text"],input[type="email"],input[type="password"] {
   border: 1px solid #ddd;
   padding: 0 15px;
   line-height: 38px;
@@ -184,6 +184,48 @@ h1.logo {
   line-height: 25px;
   float: left;
 }
+#cs_ingred{
+  float: left !important;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  float: right;
+  margin-top: -9px;
+}
+.dropdown button{
+  color: #ffffff;
+  border: 1px solid #4ebae3;
+  background-color: #4ebae3;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 65px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 9;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 15px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
 .form-search-header {
   border: 1px solid #ddd;
   -webkit-border-radius: 0 3px 3px 0;
@@ -321,6 +363,7 @@ h1.logo {
   padding: 15px 50px;
   border-radius: 10px;
   margin-left: 45%;
+  margin-right: 43%;
 }
 .owl-prev, .owl-next{
   background-color: rgb(227, 78, 78, 0.8);
@@ -439,7 +482,7 @@ ul, li {
   display: inline-block;
 }
 .feature-slide-name,.feature-slide-cost{
-  padding-left: 40px;
+  padding-left: 40px !important;
 }
 .product-tabs-content.equal-container {
   overflow: hidden;
@@ -773,4 +816,170 @@ ul, li {
     line-height: 38px;
     height: 38px;
   }
+}
+/*PRODUCT DETAIL*/
+.container3{
+  background-color: #ececec;
+  overflow: hidden;
+}
+#picBox{
+  background-color: #d4d4d4;
+  width: 40%;
+  margin: 5%;
+  margin-top: 2%;
+  margin-right: 2% !important;
+  float: left;
+}
+#desBox{
+  width: 45%;
+  margin-right: 2%;
+  margin-top: 2%;
+  float: left;
+}
+#midBox{
+  display: block;
+  overflow: hidden;
+}
+#tSec{
+  width: 85%;
+  margin-top: 2%;
+  margin-left: 5%;
+}
+h2{
+  color: #4ebae3;
+}
+#desBox input{
+  width: 80px;
+  padding: 5px 0px;
+}
+#addCr{
+  padding: 10px 200px;
+  background-color: #4ebae3;
+  border-color: #4ebae3;
+  color: white;
+}
+/*ADD PRODUCT*/
+#addForm input[type="text"],input[type="email"],input[type="password"],input[type="number"],#addForm input[type="number"],#addForm textarea,#addForm select{
+  width: 60% !important;
+}
+label{
+  padding: 0px 20px;
+  margin-right: 10%;
+}
+.secBox{
+  width: 55%;
+  padding: 10px;
+}
+.secBox input,select,textarea{
+  float: right;
+}
+.subBtn input{
+  width: 20% !important;
+  padding: 10px;
+  margin-left: 18%;
+  background-color: #4ebae3;
+  border-color: #4ebae3;
+  color: #ffffff;
+}
+html[dir="rtl"] #navigation {
+  float: right;
+  display: inline;
+  margin-left: 0px;
+  margin-right: 360px;
+}
+
+html[dir="rtl"] .feature-slide-name,html[dir="rtl"] .feature-slide-cost{
+  padding-right: 40px;
+  padding-left: 0px !important;
+}
+
+html[dir="rtl"] .header-mid-right,html[dir="rtl"] #btnEmpty{
+  float: left !important;
+}
+html[dir="rtl"] .header-mid-left {
+  float: right;
+  width: 88%;
+}
+html[dir="rtl"] .logo {
+   float: right;
+ }
+html[dir="rtl"] .header-search {
+  float: right;
+  margin-left: 0%;
+  margin-right: 50%;
+}
+html[dir="rtl"] .button-search{
+  border-radius: 5px 0px 0px 5px;
+}
+html[dir="rtl"] .form-search-header input{
+  float: right;
+}
+html[dir="rtl"] .cart-amount{
+  left: 85px;
+}
+html[dir="rtl"] #bl1,html[dir="rtl"] #bl2,html[dir="rtl"] #bl3,html[dir="rtl"] #bl4,html[dir="rtl"] #picBox{
+  float: right;
+}
+#timeSlot{
+  width:30%;
+  float: left;
+}
+html[dir="rtl"] #timeSlot,html[dir="rtl"] #cs_ingred{
+  float: right !important;
+}
+html[dir="rtl"] #tSec{
+  margin-right: 2%;
+}
+html[dir="rtl"] .cartBtn{
+  margin-left: 35% !important;
+}
+html[dir="rtl"] .cartBtn input{
+  float: left !important;
+  margin-left: 0%;
+  width: 60%;
+}
+.no_msg{
+  margin: 20px 0px;
+  margin-left: 45%
+}
+html[dir="rtl"] .no_msg{
+  margin: 20px 0px;
+  margin-right: 40%
+}
+html[dir="rtl"] .secBox label{
+  margin-left: 5% !important;
+}
+html[dir="rtl"] .secBox input{
+  float: left;
+}
+html[dir="rtl"] .innerBox{
+  float: left;
+  width: 65%;
+}
+html[dir="rtl"] .subBtn input{
+  float: left;
+  margin-left: 45%;
+}
+html[dir="rtl"] #addForm input,html[dir="rtl"] #addForm textarea,html[dir="rtl"] #addForm select{
+  float: left !important;
+}
+html[dir="rtl"] #addForm input[type="submit"]{
+  float: none !important;
+}
+html[dir="rtl"] #addForm label{
+  float: right !important;
+  margin-left: 1%;
+}
+html[dir="rtl"] .secItm{
+  float: right !important;
+}
+#addForm input{
+  float: right !important;
+}
+#addForm input[type="submit"]{
+  float: none !important;
+}
+#addForm label{
+  float: left !important;
+  margin-left: 6%;
 }

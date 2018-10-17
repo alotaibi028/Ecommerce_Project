@@ -1,7 +1,11 @@
 <?php   include 'includes/config.php';
 include 'header.php';
-
-
+/**
+ * Created by PhpStorm.
+ * User: Hi
+ * Date: 9/7/2018
+ * Time: 8:24 AM
+ */
 if(!empty($_REQUEST["action"])) {
     switch($_REQUEST["action"]) {
         case "add":
@@ -10,7 +14,7 @@ if(!empty($_REQUEST["action"])) {
                 $r = mysqli_query($con, $productQuery);
                 $result = $r -> fetch_array();
                 $itemArray = array($result["id"]=>array('id'=>$result["id"],'name'=>$result["name"], 'quantity'=>$_REQUEST["quantity"],
-                    'price'=>$result["price"]));
+                    'price'=>$result["price"],'p_date'=>$_REQUEST["pickUpDate"],'p_time'=>$_REQUEST["timeSlot"],'c_ingredients'=>$_REQUEST["custom_ingredients"]));
 
                 if(!empty($_SESSION["cart_item"])) {
                     if(in_array($result["id"],array_keys($_SESSION["cart_item"]))) {
@@ -22,79 +26,49 @@ if(!empty($_REQUEST["action"])) {
                                 $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
                             }
                         }
-                        header('location:cart.php');
+//                        header('location:cart.php');
+                        echo '<script type="text/javascript">';
+                        echo 'window.location.href="cart.php";';
+                        echo '</script>';
                     } else {
                         $_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
-                        header('location:cart.php');
+//                        header('location:cart.php');
+                        echo '<script type="text/javascript">';
+                        echo 'window.location.href="cart.php";';
+                        echo '</script>';
                     }
                 } else {
                     $_SESSION["cart_item"] = $itemArray;
-                    header('location:cart.php');
+//                    header('location:cart.php');
+                    echo '<script type="text/javascript">';
+                    echo 'window.location.href="cart.php";';
+                    echo '</script>';
                 }
             }
             break;
         case "remove":
             if(!empty($_SESSION["cart_item"])) {
                 foreach($_SESSION["cart_item"] as $k => $v) {
-                    if($_SESSION["cart_item"][$k]['id'] == $_REQUEST[pId]){
+                    if($_SESSION["cart_item"][$k]['id'] == $_REQUEST['pId']){
                         unset($_SESSION["cart_item"][$k]);
                     }
                 }
-                header('location:cart.php');
+//                header('location:cart.php');
+                echo '<script type="text/javascript">';
+                echo 'window.location.href="cart.php";';
+                echo '</script>';
             }
             break;
         case "empty":
             unset($_SESSION["cart_item"]);
-            header('location:cart.php');
+//            header('location:cart.php');
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="cart.php";';
+            echo '</script>';
             break;
     }
 }
-
 ?>
-
-<style>
-    .container3{
-        background-color: #ececec;
-        overflow: hidden;
-    }
-    #picBox{
-        background-color: #d4d4d4;
-        width: 40%;
-        margin: 5%;
-        margin-top: 2%;
-        margin-right: 2% !important;
-        float: left;
-    }
-    #desBox{
-        width: 45%;
-        margin-right: 2%;
-        margin-top: 2%;
-        float: left;
-    }
-    #midBox{
-        display: block;
-        overflow: hidden;
-    }
-    #tSec{
-        width: 85%;
-        margin-top: 2%;
-        margin-left: 5%;
-    }
-    h2{
-        color: #4ebae3;
-    }
-    #desBox input{
-        width: 80px;
-        padding: 5px 0px;
-    }
-    #addCr{
-        padding: 10px 200px;
-        background-color: #4ebae3;
-        border-color: #4ebae3;
-        color: white;
-    }
-
-</style>
 
 <body>
     <div class="container3">
@@ -119,7 +93,7 @@ if(!empty($_REQUEST["action"])) {
         }
         ?>
         <div id="midBox">
-            <div id="tSec"><h2><?php echo $row3['type'];?> Item</h2></div>
+            <div id="tSec"><h2><?php echo $row3['type'];?> <?php echo $lang['item']; ?></h2></div>
             <div id="picBox">
                 <br>
                 <img src="assets/uploads/<?php echo $row['image'];?>" width="100%" height="400px"/>
@@ -128,16 +102,28 @@ if(!empty($_REQUEST["action"])) {
             <div id="desBox">
                     <form method="post" action="product_detail.php?action=add&pId=<?php echo $pid ?>">
                         <h3><?php echo $row['name'];?></h3>
-                        <span id="prTxt">Price: <?php echo $row['price'];?></span><br><br>
-                        <span><b>Availability:</b> <?php echo $row1['quantity'];?></span>
-                        <p><b>Description:</b> <?php echo $row['description'];?></p>
+                        <span id="prTxt"><b><?php echo $lang['price']; ?></b>: <?php echo $row['price'];?> $</span><br>
+                        <span><b><?php echo $lang['availability']; ?>:</b> <?php echo $row1['quantity'];?></span>
+                        <p><b><?php echo $lang['description']; ?>:</b> <?php echo $row['description'];?></p>
+
+                        <span><b><?php echo $lang['quantity']; ?>:</b></span>
+                        <input style="width:10% !important;" type="number" name="quantity" value="1" size="2" /><br>
                         <br>
-                        <span>Qty:</span><br>
-                        <input type="number" name="quantity" value="1" size="2" /><br>
+                        <span><b>Pick Up Date:</b></span><br>
+                        <input style="width:30%" type="date" name="pickUpDate" required/><br>
                         <br>
-                        <span><b>Availability:</b> <?php echo $row1['quantity'];?></span><br>
-                        <span><b>Delivery:</b> <?php echo $row2['types'];?></span><br><br>
-                        <input type="submit" name="addCart" id="addCr" value="Add to cart"/>
+                        <span><b>Pick Up Time:</b></span><br>
+                        <select id="timeSlot" name="timeSlot">
+                            <option>09:00 AM</option>
+                            <option>01:00 PM</option>
+                            <option>04:00 PM</option>
+                            <option>06:00 PM</option>
+                            <option>09:00 PM</option>
+                        </select><br>
+                        <br>
+                        <span><b><?php echo $lang['delivery']; ?>:</b> <?php echo $row2['types'];?></span><br><br>
+                        <textarea name="custom_ingredients" id="cs_ingred" value="" placeholder="Add Custom Ingredients" rows="5" cols="40"></textarea><br><br><br><br>
+                        <input type="submit" name="addCart" id="addCr" value="<?php echo $lang['add_to_cart']; ?>"/>
                         <br>
 
                     </form>

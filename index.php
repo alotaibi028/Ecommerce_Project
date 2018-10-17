@@ -25,7 +25,7 @@
                             <div class="item-slide-content item-slide-content3 slide1">
                                 <h4 class="sile-subtitle"></h4>
                                 <h2 class="slide-title"></h2>
-                                <a class="button1" href="#">Buy Now</a>
+                                <a class="button1" href="#"><?php echo $lang['buy_now']; ?></a>
                             </div>
                         </div>
                         <div class="item-slide">
@@ -33,14 +33,14 @@
                             <div class="item-slide-content item-slide-content3 slide2">
                                 <h2 class="slide-title"></h2>
                                 <h4 class="sile-subtitle"></h4>
-                                <a class="button1" href="#">Buy Now</a>
+                                <a class="button1" href="#"><?php echo $lang['buy_now']; ?></a>
                             </div>
                         </div>
                         <div class="item-slide">
                             <img src="assets/images/slides/tard11.jpg" alt="banner-img">
                             <div class="item-slide-content item-slide-content3 slide3">
                                 <h3 class="slide-title"></span></h3>
-                                <a class="button1" href="#">Buy Now</a>
+                                <a class="button1" href="#"><?php echo $lang['buy_now']; ?></a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="icon-box sty">
                             <div class="icon-box-left"><i class="flaticon-transport"></i></div>
                             <div class="icon-box-right">
-                                <h4><a href="#" data-color="#3374a6"><span>Free</span> Fast Delivery</a></h4>
+                                <h4><a href="#" data-color="#3374a6"><?php echo $lang['free_fast_Delivery']; ?></a></h4>
                                 <p>On hundreds of Food items<br/>Excludes Sunday delivery</p>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                         <div class="icon-box sty">
                             <div class="icon-box-left"><i class="flaticon-shield"></i></div>
                             <div class="icon-box-right">
-                                <h4><a href="#" data-color="#3374a6"><span>Buyer</span> Protection</a></h4>
+                                <h4><a href="#" data-color="#3374a6"><?php echo $lang['buyer_protection']; ?></a></h4>
                                 <p>On hundreds of Food items<br/>Excludes Sunday delivery</p>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                         <div class="icon-box sty">
                             <div class="icon-box-left"><i class="flaticon-dollar-symbol"></i></div>
                             <div class="icon-box-right">
-                                <h4><a href="#" data-color="#3374a6"><span>Return</span> & Exchange</a></h4>
+                                <h4><a href="#" data-color="#3374a6"><?php echo $lang['return_exchange']; ?></a></h4>
                                 <p>On hundreds of Food items<br/>Excludes Sunday delivery</p>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <div class="icon-box sty">
                             <div class="icon-box-left"><i class="flaticon-24-hours-support"></i></div>
                             <div class="icon-box-right">
-                                <h4><a href="#" data-color="#3374a6"><span>Support</span> 24/7</a></h4>
+                                <h4><a href="#" data-color="#3374a6"><?php echo $lang['support']; ?></a></h4>
                                 <p>On hundreds of Food items<br/>Excludes Sunday delivery</p>
                             </div>
                         </div>
@@ -95,10 +95,10 @@
     <section>
         <div class="container">
             <div class="product-tabs">
-                <h4 class="tab-title">Food Items</h4>
+                <h4 class="tab-title"><?php echo $lang['food_item']; ?></h4>
                 <ul  class="nav nav-pills">
-                    <li class="active"><a  href="#" data-toggle="tab">New Arrivals</a></li>
-                    <li><a href="#" data-toggle="tab">Sale Products</a></li>
+                    <li class="active"><a  href="#" data-toggle="tab"><?php echo $lang['new_arrival']; ?></a></li>
+                    <li><a href="#" data-toggle="tab"><?php echo $lang['sale_product']; ?></a></li>
                 </ul>
                 <div class="product-tabs-content tab-content clearfix equal-container">
                     <div class="tab-pane active" id="tab1">
@@ -119,15 +119,15 @@
 											</figure>
 										</div>
 										<a href="product_detail.php?prodId=<?php echo $row['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $row['name']; ?>
-										<span style="font-size: 12px;">(Delivery: <?php echo $row2['types']; ?>)</span></a>
+										<span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php echo $row2['types']; ?>)</span></a>
 										<div class="feature-slide-cost">
-											<span class="price">Price: <?php echo $row['price']; ?></span>
+											<span class="price"><?php echo $lang['price']; ?>: <?php echo $row['price']; ?></span>
 										</div>
 								   
 								</div>
 								 <?php }
 								}else{
-									echo '<br><br><h2 style="margin: 20px 0px;">No Product Available</h2><br><br>';
+									echo '<br><br><h2 style="margin: 20px 0px;">'.$lang['no_product'].'</h2><br><br>';
                             }	
                             ?>
                         </div>
@@ -146,14 +146,14 @@
 											</figure>
 										</div>
 										<a href="product_detail.php?prodId=<?php echo $row['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $row['name']; ?>
-										<span style="font-size: 12px;">(Delivery: Available)</span></a>
+										<span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: Available)</span></a>
 										<div class="feature-slide-cost">
-											<span class="price">Price: <?php echo $row['price']; ?></span>
+											<span class="price"><?php echo $lang['price']; ?>: <?php echo $row['price']; ?></span>
 										</div>
 									</div>
 								 <?php }
 								}else{
-									echo '<br><br><h2 style="margin: 20px 0px;">No Product Available</h2><br><br>';
+									echo '<br><br><h2 style="margin: 20px 0px;">'.$lang['no_product'].'</h2><br><br>';
                             }
                             ?>
                         </div>
@@ -180,13 +180,12 @@
     <section>
         <div class="container">
             <div class="product-tabs">
-                <h4 class="tab-title">Food Catageries</h4>
+                <h4 class="tab-title"><?php echo $lang['food_category']; ?></h4>
                 <ul  class="nav nav-pills">
-                    <li class="active"><a  href="#" data-toggle="tab">Desset</a></li>
-                    <li><a href="#" data-toggle="tab">Baked</a></li>
-                    <li><a href="#" data-toggle="tab">Traditional Food</a></li>
+                    <li class="active"><a  href="#" data-toggle="tab"><?php echo $lang['dessert']; ?></a></li>
+                    <li><a href="#" data-toggle="tab"><?php echo $lang['baked']; ?></a></li>
+                    <li><a href="#" data-toggle="tab"><?php echo $lang['tr_food']; ?></a></li>
                 </ul>
-			
                 <div class="product-tabs-content tab-content clearfix equal-container">
                     <div class="tab-pane active" id="tab3">
                         <div class="supermartket-owl-carousel" data-number="5" data-margin="0" >
@@ -209,14 +208,14 @@
                                             <a href="product_detail.php?prodId=<?php echo $rowDesert['id']; ?>"
                                                class="feature-slide-name"><?php echo $rowDesert['name']; ?>
                                                 <span style="font-size: 12px;">
-												(Delivery: <?php echo $rowD['types']; ?>)</span></a>
+												(<?php echo $lang['delivery']; ?>: <?php echo $rowD['types']; ?>)</span></a>
                                             <div class="feature-slide-cost">
-                                                <span class="price">Price: <?php echo $rowDesert['price']; ?></span>
+                                                <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowDesert['price']; ?></span>
                                             </div>
                                         </div>
                                     <?php }
                                 }else{
-                                    echo '<br><br><h2 style="margin: 20px 0px;">No Product Available</h2><br><br>';
+                                    echo '<br><br><h2 style="margin: 20px 0px;">'.$lang['no_product'].'</h2><br><br>';
                                 }
                             ?>
                         </div>
@@ -239,15 +238,15 @@
                                             </figure>
                                         </div>
                                         <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $rowBaked['name']; ?>
-                                            <span style="font-size: 12px;">(Delivery: <?php echo $rowD1['types']; ?>)</span></a>
+                                            <span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php echo $rowD1['types']; ?>)</span></a>
                                         <div class="feature-slide-cost">
-                                            <span class="price">Price: <?php echo $rowBaked['price']; ?></span>
+                                            <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowBaked['price']; ?></span>
                                         </div>
 
                                     </div>
                                 <?php }
                             }else{
-                                echo '<h2 style="margin: 20px 0px;">No Product Available</h2>';
+                                echo '<h2 style="margin: 20px 0px;">'.$lang['no_product'].'</h2>';
                             }
                             ?>
                         </div>
@@ -273,14 +272,14 @@
                                         <a href="product_detail.php?prodId=<?php echo $rowTr['id']; ?>"
                                            class="feature-slide-name"><?php echo $rowTr['name']; ?>
                                             <span style="font-size: 12px;">
-											(Delivery: <?php echo $rowD2['types']; ?>)</span></a>
+											(<?php echo $lang['delivery']; ?>: <?php echo $rowD2['types']; ?>)</span></a>
                                         <div class="feature-slide-cost">
-                                            <span class="price">Price: <?php echo $rowTr['price']; ?></span>
+                                            <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowTr['price']; ?></span>
                                         </div>
                                     </div>
                                 <?php }
                             }else{
-                                echo '<br><br><h2 style="margin: 20px 0px;">No Product Available</h2><br><br>';
+                                echo '<br><br><h2 style="margin: 20px 0px;">'.$lang['no_product'].'</h2><br><br>';
                             }
                             ?>
                         </div>

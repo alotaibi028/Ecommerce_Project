@@ -1,11 +1,7 @@
 <?php include 'includes/config.php';
 include 'header.php';
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 9/11/2018
- * Time: 10:35 PM
- */
+ 
+ 
 $queryDesert = "select * from products where product_type_id=3";
 $resultDesert = mysqli_query($con, $queryDesert);
 ?>
@@ -60,17 +56,17 @@ $resultDesert = mysqli_query($con, $queryDesert);
                 <a href="product_detail.php?prodId=<?php echo $rowDesert['id']; ?>"
                    class="feature-slide-name"><?php echo $rowDesert['name']; ?>
                     <span style="font-size: 10px;">
-                        (Delivery: <?php echo $rowD['types']; ?>)</span></a>
+                        (<?php echo $lang['delivery']; ?>: <?php echo $rowD['types']; ?>)</span></a>
                 <div class="feature-slide-cost">
-                    <span class="price">Price: <?php echo $rowDesert['price']; ?></span>
+                    <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowDesert['price']; ?></span>
                 </div>
                 <div class="cartBtn">
-                    <a href="cart.php"><input type="button" value="Add to cart"/></a>
+                    <a href="cart.php"><input type="button" value="<?php echo $lang['add_to_cart']; ?>"/></a>
                 </div>
             </div>
                 <?php }
                 }else{
-                    echo '<br><br><h2 style="margin: 20px 0px;">No Product Available</h2><br><br>';
+                    echo '<br><br><h2 class="no_msg">'.$lang['no_product'].'</h2><br><br>';
                 }
                 ?>
             </div>

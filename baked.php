@@ -57,15 +57,15 @@ $resultBaked = mysqli_query($con, $queryBaked);
                             </figure>
                         </div>
                         <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $rowBaked['name']; ?>
-                            <span style="font-size: 12px;">(Delivery: <?php echo $rowD1['types']; ?>)</span></a>
+                            <span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php echo $rowD1['types']; ?>)</span></a>
                         <div class="feature-slide-cost">
-                            <span class="price">Price: <?php echo $rowBaked['price']; ?></span>
+                            <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowBaked['price']; ?></span>
                         </div>
 
                     </div>
                 <?php }
             }else{
-                echo '<h2 style="margin: 20px 0px;">No Product Available</h2>';
+                echo '<h2 class="no_msg">'.$lang['no_product'].'</h2>';
             }
             ?>
         </div>
