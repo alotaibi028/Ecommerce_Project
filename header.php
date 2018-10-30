@@ -45,6 +45,26 @@
                         <?php }else{?>
                             <a href="?lang=arabic"><button>العربية</button></a>
                         <?php } ?>
+                           
+                           <?php if(isset($_GET['prodId'])){ ?>
+                           <div class="dropdown-content">
+                            <?php if($_SESSION['lang'] === 'english'){ ?>
+                                <a href="?prodId=<?php echo $_GET['prodId']; ?>&lang=arabic">العربية</a>
+                            <?php }else{  ?>
+                                <a href="?prodId=<?php echo $_GET['prodId']; ?>&lang=english">English</a>
+                            <?php } ?>
+                            </div>
+                           
+                           <?php }elseif(isset($_GET['id'])){ ?> 
+                           <div class="dropdown-content">
+                            <?php if($_SESSION['lang'] === 'english'){ ?>
+                                <a href="?id=<?php echo $_GET['id']; ?>&lang=arabic">العربية</a>
+                            <?php }else{  ?>
+                                <a href="?id=<?php echo $_GET['id']; ?>&lang=english">English</a>
+                            <?php } ?>
+                            </div>
+                           
+                           <?php }else{ ?>
                             <div class="dropdown-content">
                             <?php if($_SESSION['lang'] === 'english'){ ?>
                                 <a href="?lang=arabic">العربية</a>
@@ -52,6 +72,7 @@
                                 <a href="?lang=english">English</a>
                             <?php } ?>
                             </div>
+                            <?php } ?>
 
 
                     </div>
@@ -109,8 +130,10 @@
                         <li class="menu-item"><a href="desserts.php"><?php echo $lang['dessert']; ?></a></li>
                         <li class="menu-item"><a href="baked.php"><?php echo $lang['baked']; ?></a></li>
                         <li class="menu-item"><a href="tfood.php"><?php echo $lang['tr_food']; ?></a></li>
-                        <?php if(isset($_SESSION['u_id'])){ ?>
+                        <?php if(isset($_SESSION['u_id']) && $_SESSION['u_type'] == 'customer'){ ?>
                             <li class="menu-item"><a href="track_order.php"><?php echo $lang['track_order']; ?></a></li>
+                        <?php }else if(isset($_SESSION['u_id']) && $_SESSION['u_type'] == 'vendor'){ ?>
+                            <li class="menu-item"><a href="vendors/add_products.php"><?php echo $lang['my_account']; ?></a></li>
                         <?php }?>
                         <li class="menu-item "><a href="#"><?php echo $lang['about_us']; ?></a></li>
                         <li class="menu-item"><a href="#"><?php echo $lang['contact_us']; ?></a></li>

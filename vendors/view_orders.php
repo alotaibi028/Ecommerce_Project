@@ -1,10 +1,15 @@
 <?php include '../includes/config.php';
 include "header.php";
-
+/**
+ * Created by PhpStorm.
+ * User: Hi
+ * Date: 10/5/2018
+ * Time: 7:49 AM
+ */
 
 
 $query = "SELECT * FROM products p INNER JOIN order_products op ON p.id = op.product_id  INNER JOIN orders o
-ON o.id = op.order_id INNER JOIN users u ON u.id = o.cust_id WHERE p.added_by = ".$_SESSION['u_id']." AND o.order_status = 'active'";
+ON o.id = op.order_id INNER JOIN users u ON u.id = o.cust_id WHERE p.added_by = ".$_SESSION['u_id'];
 
 $result = mysqli_query($con,$query);
 

@@ -7,7 +7,7 @@ include 'header.php';
  * Time: 10:20 PM
  */
 if(!isset($_SESSION['u_id'])){
-    header('location:login.php');
+    header('location:login.php?ref=checkout');
 }
 
 if(isset($_REQUEST['checkout'])){
@@ -48,6 +48,7 @@ if(isset($_REQUEST['checkout'])){
                 $sql2 = "INSERT INTO order_products VALUES (".$last_id.",".$prod_id.",".$quantity.",".$u_price.",
                         ".$t_price.",'".$p_date."','".$p_time."','".$c_ingred."')";
                 mysqli_query($con, $sql2);
+                unset($_SESSION["cart_item"]);
             }
 //            header('location:orderstatus.php');
             echo '<script type="text/javascript">';
@@ -63,6 +64,20 @@ if(isset($_REQUEST['checkout'])){
     .secBox{
         width: 80%;
     }
+    
+    
+    input[type="number"], input[type="password"] {
+    border: 1px solid #ddd;
+    padding: 0 15px;
+    line-height: 38px;
+    height: 38px;
+    border-radius: 3px;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+    
+    
 </style>
 <div class = "container" style="display: inline-block; width: 100%;">
 
@@ -72,22 +87,22 @@ if(isset($_REQUEST['checkout'])){
 
             <div class="secBox">
                 <label><?php echo $lang['first_name']; ?>:*</label>
-                <input type="text" name="fname" value="<?php echo $_SESSION['u_fname']; ?>" placeholder="Enter First Name" disabled/>
+                <input type="text" name="fname" value="<?php echo $_SESSION['u_fname']; ?>" placeholder="Enter First Name" />
             </div><br>
 
             <div class="secBox">
                 <label><?php echo $lang['last_name']; ?>:*</label>
-                <input type="text" name="lname" value="<?php echo $_SESSION['u_lname']; ?>" placeholder="Enter Last Name" disabled/>
+                <input type="text" name="lname" value="<?php echo $_SESSION['u_lname']; ?>" placeholder="Enter Last Name" />
             </div><br>
 
             <div class="secBox">
                 <label><?php echo $lang['address_1']; ?>:*</label>
-                <input type="text" name="address1" placeholder="<?php echo $lang['address_1']; ?>" required/>
+                <input type="text" name="address1" placeholder="" value="" required/>
             </div><br>
 
             <div class="secBox">
                 <label><?php echo $lang['address_2']; ?>:</label>
-                <input type="text" name="address2" placeholder="<?php echo $lang['address_2']; ?>"/>
+                <input type="text" name="address2" value="" placeholder=""/>
             </div><br>
 
             <div class="secBox">
@@ -107,19 +122,26 @@ if(isset($_REQUEST['checkout'])){
 
             <div  class="secBox">
                 <label><?php echo $lang['email']; ?>:*</label>
-                <input type="email" name="pemail" value="<?php echo $_SESSION['u_email']; ?>" placeholder="Enter Email" disabled/>
+                <input type="email" name="pemail" value="<?php echo $_SESSION['u_email']; ?>" placeholder="Enter Email" />
             </div><br>
 
             <div  class="secBox">
                 <label><?php echo $lang['phone_no']; ?>:*</label>
-                <input type="text" name="pnumber" id="price" placeholder="<?php echo $lang['enter_phone_no']; ?>" required/>
+                <input type="number" name="pnumber" id="price" placeholder="<?php echo $lang['enter_phone_no']; ?>" required/>
             </div><br><br>
 
             <div class="">
-                <label><?php echo $lang['delivery_type']; ?>:*</label>
+                <label><?php echo $lang['payment_type']; ?>:*</label>
                 <div class="innerBox">
                     <span><input style="margin-left: 1%" type="radio" name="payCheckout" value="0" checked><?php echo $lang['pay_on_delivery']; ?></span>
                     <span><input type="radio" name="payCheckout" value="1"><?php echo $lang['pay_now']; ?></span>
+                </div>
+            </div><br>
+            <div class="">
+                <label><?php echo $lang['delivery_type']; ?>:*</label>
+                <div class="innerBox">
+                    <span><input style="margin-left: 1%" type="radio" name="delivery_type" value="0" checked><?php echo $lang['with_delivery']; ?></span>
+                    <span><input type="radio" name="delivery_type" value="1"><?php echo $lang['no_delivery']; ?></span>
                 </div>
             </div><br><br>
 
@@ -148,9 +170,13 @@ if(isset($_REQUEST['checkout'])){
                 <?php
                 foreach ($_SESSION["cart_item"] as $item){
                     $item_price = $item["quantity"]*$item["price"];
+                    $sql = "select * from products where id = ".$item['id'];
+                    $result = mysqli_query($con, $sql);
+                    $row = $result ->fetch_array();
+                    $item_price = $item["quantity"]*$item["price"];
                     ?>
                     <tr>
-                        <td><?php echo $item["name"]; ?></td>
+                        <td><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; }else{ echo $row['name']; } ?></td>
                         <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
                         <td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
                         <td  style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>

@@ -48,6 +48,9 @@ if(isset($_REQUEST['submit'])){
     <section style="width: 60%; margin: 0 auto;   margin-top: 5% !important;">
         <center><h2><?php echo $lang['login']; ?></h2><br>
         <form method="post" id="addForm"action="login.php">
+           <?php if(isset($_GET['ref'])){ ?>
+           <p style="color:red">Please login to checkout</p>
+           <?php } ?>
             <label><?php echo $lang['email']; ?>:*</label>
             <input type="email" name="uemail" placeholder="<?php echo $lang['enter_email']; ?>"/><br><br>
             <label><?php echo $lang['password']; ?>:*</label>

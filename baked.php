@@ -3,10 +3,9 @@ include 'header.php';
 /**
  * Created by PhpStorm.
  * User: Hi
- * Date: 9/12/2018
- * Time: 8:56 PM
+ * Date: 9/11/2018
+ * Time: 10:35 PM
  */
-
 $queryBaked = "select * from products where product_type_id=2";
 $resultBaked = mysqli_query($con, $queryBaked);
 ?>
@@ -25,7 +24,7 @@ $resultBaked = mysqli_query($con, $queryBaked);
             margin: 10px;
         }
         .cartBtn input{
-            margin-left: 28%;
+            /*margin-left: 28%;*/
             width: 35%;
             background: rgba(3,2,1,0);
             border: 1px solid #4ebae3;
@@ -33,44 +32,54 @@ $resultBaked = mysqli_query($con, $queryBaked);
             padding: 5px 10px;
             color: #4ebae3;
             margin-top: 3%;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-<div class="container">
-    <div class="sections">
-        <div class="secBx">
+    <div class="container">
+        <div class="sections">
+            <div class="secBx">
             <?php
+
             if(mysqli_num_rows($resultBaked) > 0) {
                 while ($rowBaked = $resultBaked->fetch_array()) {
-                    $queryD1 = "select * from deliverytypes where id = " . $rowBaked['delivery_type_id'];
-                    $resultD1 = mysqli_query($con, $queryD1);
-                    $rowD1 = $resultD1->fetch_array();
-                    ?>
-                    <div class="product-list-content equal-elem">
-                        <div class="product-media">
-                            <figure>
-                                <a href='product_detail.php?prodId=<?php echo $rowBaked['id']; ?>'><img src="assets/uploads/<?php echo $rowBaked['image']; ?>"
-                                                                                                        alt="feature" width="202" height="239">
-                                </a>
-                            </figure>
-                        </div>
-                        <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $rowBaked['name']; ?>
-                            <span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php echo $rowD1['types']; ?>)</span></a>
-                        <div class="feature-slide-cost">
-                            <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowBaked['price']; ?></span>
-                        </div>
-
-                    </div>
-                <?php }
-            }else{
-                echo '<h2 class="no_msg">'.$lang['no_product'].'</h2>';
-            }
+                $queryD = "select * from deliverytypes where id = " . $rowBaked['delivery_type_id'];
+                $resultD = mysqli_query($con, $queryD);
+                $rowD = $resultD->fetch_array();
             ?>
+            <div class="secItm">
+                <div class="product-media">
+                    <figure>
+                        <a href='product_detail.php?prodId=<?php echo $rowBaked['id']; ?>'><img
+                                src="assets/uploads/<?php echo $rowBaked['image']; ?>"
+                                alt="feature" style="width:230px;height:150px">
+                        </a>
+                    </figure>
+                </div>
+                <center>
+                <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>"
+                   class="feature-slide-name"><?php echo $rowBaked['name']; ?></a><br>
+                    <span style="font-size: 10px;">
+                        (<?php echo $lang['delivery']; ?>:  <?php if($_SESSION['lang'] == 'arabic'){ echo $rowD['types_ar']; }else{ echo $rowD['types']; } ?>)</span>
+                <div class="feature-slide-cost">
+                    <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowBaked['price']; ?></span>
+                </div>
+                <div class="cartBtn">
+                    <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>"><input type="button" value="<?php echo $lang['add_to_cart']; ?>"/></a>
+                </div>
+                </center>
+            </div>
+                <?php }
+                }else{
+                    echo '<br><br><h2 class="no_msg">'.$lang['no_product'].'</h2><br><br>';
+                }
+                ?>
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 <?php include 'footer.php' ?>
+

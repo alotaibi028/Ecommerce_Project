@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Hi
+ * Date: 10/1/2018
+ * Time: 10:09 PM
+ */
 
 $lang = array(
     'home' => 'الصفحة الرئيسية',
@@ -25,6 +30,7 @@ $lang = array(
     'no_product' => 'لا يوجد منتج متاح',
     'price' => 'كمية',
     'delivery' => 'توصيل',
+    
     'about' => 'حول',
     'terms' => 'تعليمات الاستخدام',
     'privacy' => 'سياسة الخصوصية',
@@ -81,6 +87,7 @@ $lang = array(
     'country' => 'بلد',
     'phone_no' => 'رقم الهاتف',
     'delivery_type' => 'نوع التوصيل',
+    'payment_type'=>'نوع الدفع',
     'pay_on_delivery' => 'الدفع عند الاستلام',
     'pay_now' => 'ادفع الآن',
     'proceed' => 'تقدم',
@@ -98,7 +105,11 @@ $lang = array(
     'action' => 'عمل',
     'details' => 'تفاصيل',
     'order_placed_on' => 'ترتيب وضعها على',
+    'products' => 'منتجات',
     'add_products' => 'إضافة المنتجات',
+	'view_products' => 'مشاهدة المنتجات',
+	'update_products' => 'تحديث المنتجات',
+	'delete_products' => 'حذف المنتجات',
     'view_orders' => 'عرض الطلبات',
     'manage_order' => 'إدارة الطلبات',
     'change_order_status' => 'تغيير حالة الطلب',
@@ -120,4 +131,15 @@ $lang = array(
     'wanted_time' => 'الوقت المطلوب',
     'order_status' => 'حالة الطلب',
     'product_type' => 'نوع المنتج',
+    'not_started' => 'لم يبدأ',
+    'is_making' => 'يصنع',
+    'finished' => 'تم الانتهاء من',
+    'out_to_deliver' => 'خارج لتسليم',
+    'send' => 'إرسال',
+    'with_delivery'=>'توصيل',
+    'no_delivery'=>'بدون توصيل',
+	'description'=>'وصف',
+	'action'=>'عمل',
+	'update'=>'تحديث',
+	'delete'=>'حذف',
 );

@@ -31,9 +31,12 @@
     <?php
         foreach ($_SESSION["cart_item"] as $item){
             $item_price = $item["quantity"]*$item["price"];
+            $sql = "select * from products where id = ".$item['id'];
+            $result = mysqli_query($con, $sql);
+            $row = $result ->fetch_array();
             ?>
             <tr>
-                <td><?php echo $item["name"]; ?></td>
+                <td><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; }else{ echo $row['name']; }?></td>
                 <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
                 <td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
                 <td  style="text-align:right;"><?php echo $item["p_date"]; ?></td>

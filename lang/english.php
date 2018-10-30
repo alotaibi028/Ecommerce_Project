@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Hi
+ * Date: 10/1/2018
+ * Time: 10:09 PM
+ */
 
 $lang = array(
     'home' => 'HOME',
@@ -39,7 +44,7 @@ $lang = array(
     'phone' => 'Phone',
     'email' => 'Email',
     'top' => 'Top',
-    'add_to_cart' => 'Add To Cart',
+    'add_to_cart' => 'Buy Now',
     'empty_cart' => 'Empty Cart',
     'shopping_cart' => 'Shopping Cart',
     'your_cart_empty' => 'Your Cart is Empty',
@@ -81,6 +86,7 @@ $lang = array(
     'country' => 'Country',
     'phone_no' => 'Phone No',
     'delivery_type' => 'Delivery Type',
+    'payment_type'=>'Payment Type',
     'pay_on_delivery' => 'Pay On Delivery',
     'pay_now' => 'Pay Now',
     'proceed' => 'Proceed',
@@ -98,7 +104,11 @@ $lang = array(
     'action' => 'Action',
     'details' => 'Details',
     'order_placed_on' => 'Order Placed On',
+    'products' => 'PRODUCTS',
     'add_products' => 'Add Products',
+	'view_products' => 'View Products',
+	'update_products' => 'Update Products',
+	'delete_products' => 'Delete Products',
     'view_orders' => 'VIEW ORDERS',
     'manage_order' => 'Manage Orders',
     'change_order_status' => 'Change Order Status',
@@ -120,5 +130,15 @@ $lang = array(
     'wanted_time' => 'Wanted Time',
     'order_status' => 'Order Status',
     'product_type' => 'Product Type',
-
+    'not_started' => 'Not Started',
+    'is_making' => 'Is Making',
+    'finished' => 'Finished',
+    'out_to_deliver' => 'Out To Deliver',
+    'send' => 'Send',
+    'with_delivery'=>'With Delivery',
+    'no_delivery'=>'No Delivery',
+	'description'=>'Description',
+	'action'=>'Action',
+	'update'=>'Update',
+	'delete'=>'Delete',
 );

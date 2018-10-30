@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2018 at 08:35 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: Oct 29, 2018 at 05:16 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,16 +30,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `deliverytypes` (
   `id` int(11) NOT NULL,
-  `types` varchar(50) DEFAULT NULL
+  `types` varchar(50) DEFAULT NULL,
+  `types_ar` varchar(50) CHARACTER SET utf8 COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deliverytypes`
 --
 
-INSERT INTO `deliverytypes` (`id`, `types`) VALUES
-(1, 'Provided'),
-(2, 'Not Provided');
+INSERT INTO `deliverytypes` (`id`, `types`, `types_ar`) VALUES
+(1, 'Provided', 'قدمت'),
+(2, 'Not Provided', 'غير مزود');
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ CREATE TABLE `orders` (
   `phone` int(11) NOT NULL,
   `pay_method` enum('0','1') NOT NULL DEFAULT '0',
   `order_date` datetime NOT NULL,
-  `order_status` enum('active','delivered') NOT NULL DEFAULT 'active'
+  `order_status` varchar(50) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -65,14 +66,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `cust_id`, `address`, `address2`, `city`, `country`, `phone`, `pay_method`, `order_date`, `order_status`) VALUES
-(8, 1, 'kljk', 'nnjj', 'jio', 'jio', 2111, '0', '2018-10-04 07:10:02', 'active'),
-(9, 1, 'Abc, Street, Lahore ', '', 'Lahore', 'Lahore', 495228458, '0', '2018-10-05 04:10:13', 'active'),
-(10, 1, 'Test', '', 'Lahore', 'Lahore', 48379587, '0', '2018-10-05 04:10:48', 'delivered'),
-(11, 1, 'My Address', '', 'Lahore', 'Lahore', 2147483647, '0', '2018-10-05 04:10:50', 'delivered'),
-(13, 1, 'XYZ street', '', 'Lahore', 'Pakistan', 2147483647, '0', '2018-10-05 07:10:52', 'active'),
-(14, 1, 'dlsmfkmklmlk', 'mlkmlkm', 'lkm', 'klmlkm', 34523, '0', '2018-10-07 20:10:57', 'active'),
-(15, 1, 'asdn', 'nkjl', 'jjk', 'jlkjk', 3423, '0', '2018-10-08 22:10:45', 'active'),
-(16, 1, 'lksfdk', 'lklkjkl', 'lkjklj', 'kljkl', 341234, '0', '2018-10-09 04:10:58', 'active');
+(1, 1, '4/352 shah', 'faisal colony', 'karachi', 'Pakistan', 2147483647, '0', '2018-10-29 05:10:40', 'Is Making');
 
 -- --------------------------------------------------------
 
@@ -96,17 +90,7 @@ CREATE TABLE `order_products` (
 --
 
 INSERT INTO `order_products` (`order_id`, `product_id`, `quantity`, `unit_price`, `total_price`, `delivery_date`, `delivery_time`, `custom_ingredients`) VALUES
-(8, 9, 1, 87, 87, '2018-10-24', '09:00:00', ''),
-(8, 7, 5, 200, 1000, '2018-10-23', '04:00:00', ''),
-(9, 7, 8, 200, 1600, '2018-10-30', '06:00:00', ''),
-(10, 9, 1, 87, 87, '2018-10-31', '04:00:00', ''),
-(11, 7, 8, 200, 1600, '2018-10-30', '06:00:00', ''),
-(11, 9, 1, 87, 87, '2018-10-31', '04:00:00', ''),
-(12, 7, 2, 200, 400, '2018-10-17', '04:00:00', ''),
-(13, 9, 2, 87, 174, '2018-10-23', '04:00:00', ''),
-(14, 7, 5, 200, 1000, '2018-10-22', '01:00:00', 'mayo'),
-(15, 7, 14, 200, 2800, '2018-10-24', '09:00:00', 'Test'),
-(16, 7, 14, 200, 2800, '2018-10-24', '09:00:00', 'Test');
+(1, 1, 1, 100, 100, '2018-10-31', '09:00:00', 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -135,26 +119,25 @@ INSERT INTO `paymenttypes` (`id`, `type`) VALUES
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `name_ar` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `description` varchar(500) CHARACTER SET latin1 DEFAULT NULL,
+  `description_ar` varchar(500) CHARACTER SET utf8 NOT NULL,
   `price` int(11) DEFAULT NULL,
-  `discount` int(11) DEFAULT NULL,
-  `image` varchar(50) DEFAULT NULL,
+  `image` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `date_added` datetime NOT NULL,
   `stock_id` int(11) DEFAULT NULL,
   `product_type_id` int(11) DEFAULT NULL,
   `delivery_type_id` int(11) DEFAULT NULL,
   `added_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `image`, `date_added`, `stock_id`, `product_type_id`, `delivery_type_id`, `added_by`) VALUES
-(7, 'Food Item 1', 'Here is my latest and Delicious Food Item', 200, 10, 'Food Item 1_6.jpg', '2018-09-08 21:08:34', 6, 3, 2, 3),
-(8, 'Item 2', 'Here it is a new Food', 550, 50, 'Item 2_7.jpg', '2018-09-11 18:24:08', 7, 2, 1, 2),
-(9, 'Item 3', 'Test', 87, 9, 'Item 3_8.jpg', '2018-09-11 19:50:04', 8, 3, 1, 3);
+INSERT INTO `products` (`id`, `name`, `name_ar`, `description`, `description_ar`, `price`, `image`, `date_added`, `stock_id`, `product_type_id`, `delivery_type_id`, `added_by`) VALUES
+(1, 'checking', 'checking', 'checking', 'checking', 100, 'checking_41.jpg', '2018-10-29 05:05:44', 41, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -164,17 +147,18 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `image
 
 CREATE TABLE `producttypes` (
   `id` int(11) NOT NULL,
-  `type` varchar(50) DEFAULT NULL
+  `type` varchar(50) DEFAULT NULL,
+  `type_ar` varchar(50) CHARACTER SET utf8 COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `producttypes`
 --
 
-INSERT INTO `producttypes` (`id`, `type`) VALUES
-(1, 'Traditional Food'),
-(2, 'Baked'),
-(3, 'DESERT');
+INSERT INTO `producttypes` (`id`, `type`, `type_ar`) VALUES
+(1, 'Traditional Food', 'اكل تقليدي'),
+(2, 'Baked', 'مخبوز'),
+(3, 'DESERT', 'الحلوى');
 
 -- --------------------------------------------------------
 
@@ -199,7 +183,40 @@ INSERT INTO `stock` (`id`, `quantity`) VALUES
 (5, 100),
 (6, 120),
 (7, 20),
-(8, 3);
+(8, 3),
+(9, 10),
+(10, 90),
+(11, 12),
+(12, 12),
+(13, 12),
+(14, 12),
+(15, 12),
+(16, 12),
+(17, 12),
+(18, 12),
+(19, 12),
+(20, 9),
+(21, 9),
+(22, 9),
+(23, 9),
+(24, 9),
+(25, 9),
+(26, 90),
+(27, 90),
+(28, 90),
+(29, 90),
+(30, 90),
+(31, 90),
+(32, 90),
+(33, 90),
+(34, 90),
+(35, 90),
+(36, 90),
+(37, 1),
+(38, 2),
+(39, 20),
+(40, 11),
+(41, 200);
 
 -- --------------------------------------------------------
 
@@ -287,7 +304,7 @@ ALTER TABLE `deliverytypes`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `paymenttypes`
@@ -299,7 +316,7 @@ ALTER TABLE `paymenttypes`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `producttypes`
@@ -311,13 +328,13 @@ ALTER TABLE `producttypes`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

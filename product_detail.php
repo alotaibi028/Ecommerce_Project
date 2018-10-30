@@ -10,6 +10,13 @@ if(!empty($_REQUEST["action"])) {
     switch($_REQUEST["action"]) {
         case "add":
             if(!empty($_REQUEST["quantity"])) {
+                if (new DateTime() > new DateTime($_REQUEST["pickUpDate"].' '.$_REQUEST["timeSlot"])) {
+                        echo '<script type="text/javascript">';
+                        echo 'alert("Select time is not correct");';
+                        echo 'window.location.href="product_detail.php?prodId='.$_REQUEST['pId'].'";';
+                        echo '</script>';
+                    exit;
+                }
                 $productQuery ="SELECT * FROM products WHERE id = ".$_REQUEST['pId'];
                 $r = mysqli_query($con, $productQuery);
                 $result = $r -> fetch_array();
@@ -93,7 +100,7 @@ if(!empty($_REQUEST["action"])) {
         }
         ?>
         <div id="midBox">
-            <div id="tSec"><h2><?php echo $row3['type'];?> <?php echo $lang['item']; ?></h2></div>
+            <div id="tSec"><h2><?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; }?> <?php echo $lang['item']; ?></h2></div>
             <div id="picBox">
                 <br>
                 <img src="assets/uploads/<?php echo $row['image'];?>" width="100%" height="400px"/>
@@ -101,18 +108,18 @@ if(!empty($_REQUEST["action"])) {
             </div>
             <div id="desBox">
                     <form method="post" action="product_detail.php?action=add&pId=<?php echo $pid ?>">
-                        <h3><?php echo $row['name'];?></h3>
+                        <h3><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; }else{ echo $row['name']; }?></h3>
                         <span id="prTxt"><b><?php echo $lang['price']; ?></b>: <?php echo $row['price'];?> $</span><br>
                         <span><b><?php echo $lang['availability']; ?>:</b> <?php echo $row1['quantity'];?></span>
-                        <p><b><?php echo $lang['description']; ?>:</b> <?php echo $row['description'];?></p>
+                        <p><b><?php echo $lang['description']; ?>:</b> <?php if($_SESSION['lang'] == 'arabic'){ echo $row['description_ar']; }else{ echo $row['description']; }?></p>
 
                         <span><b><?php echo $lang['quantity']; ?>:</b></span>
-                        <input style="width:10% !important;" type="number" name="quantity" value="1" size="2" /><br>
+                        <input style="width:10% !important;" type="number" name="quantity" value="1" size="2" min="1" max="<?php echo $row1['quantity']; ?>" /><br>
                         <br>
-                        <span><b>Pick Up Date:</b></span><br>
+                        <span><b><?php echo $lang['pickup_date']; ?>:</b></span><br>
                         <input style="width:30%" type="date" name="pickUpDate" required/><br>
                         <br>
-                        <span><b>Pick Up Time:</b></span><br>
+                        <span><b><?php echo $lang['pick_time']; ?>:</b></span><br>
                         <select id="timeSlot" name="timeSlot">
                             <option>09:00 AM</option>
                             <option>01:00 PM</option>
@@ -121,8 +128,8 @@ if(!empty($_REQUEST["action"])) {
                             <option>09:00 PM</option>
                         </select><br>
                         <br>
-                        <span><b><?php echo $lang['delivery']; ?>:</b> <?php echo $row2['types'];?></span><br><br>
-                        <textarea name="custom_ingredients" id="cs_ingred" value="" placeholder="Add Custom Ingredients" rows="5" cols="40"></textarea><br><br><br><br>
+                        <span><b><?php echo $lang['delivery']; ?>:</b> <?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; }?></span><br><br>
+                        <textarea name="custom_ingredients" id="cs_ingred" value="" placeholder="<?php echo $lang['add_cust']; ?>" rows="5" cols="40"></textarea><br><br><br><br>
                         <input type="submit" name="addCart" id="addCr" value="<?php echo $lang['add_to_cart']; ?>"/>
                         <br>
 

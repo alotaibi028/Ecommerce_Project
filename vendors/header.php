@@ -49,15 +49,15 @@ if($_SESSION['lang'] == 'arabic'){
                     </p>
                     <div class="dropdown">
                         <?php if($_SESSION['lang'] === 'english'){?>
-                            <a href="?lang=english"><button>English</button></a>
+                            <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=english"><button>English</button></a>
                         <?php }else{?>
-                            <a href="?lang=arabic"><button>العربية</button></a>
+                            <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=arabic"><button>العربية</button></a>
                         <?php } ?>
                         <div class="dropdown-content">
                             <?php if($_SESSION['lang'] === 'english'){ ?>
-                                <a href="?lang=arabic">العربية</a>
+                                <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=arabic">العربية</a>
                             <?php }else{  ?>
-                                <a href="?lang=english">English</a>
+                                <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=english">English</a>
                             <?php } ?>
                         </div>
                     </div>
@@ -110,9 +110,16 @@ if($_SESSION['lang'] == 'arabic'){
                 <nav id="primary-navigation" class="site-navigation main-menu menu-home1">
                     <ul id="primary-menu" class="menu">
                         <li class="menu-item ">
-                            <a href="#"><?php echo $lang['home']; ?></a>
+                            <a href="../index.php"><?php echo $lang['home']; ?></a>
                         </li>
-                        <li class="menu-item"><a href="add_products.php"><?php echo $lang['add_products']; ?></a></li>
+                        <li class="menu-item">
+                        <div class="dropdown" style="float: none !important;"><a href="#"  style="color: #ffffff"><?php echo $lang['products']; ?></a>
+                                <div class="dropdown-content" style="min-width: 150px">
+                                    <a href="add_products.php"><?php echo $lang['add_products']; ?></a>
+                                    <a href="view_products.php"><?php echo $lang['view_products']; ?></a>
+                                </div>
+                            </div>
+                        </li>
                         <li class="menu-item">
                             <div class="dropdown" style="float: none !important;"><a href="#" style="color: #ffffff"><?php echo $lang['view_orders']; ?></a>
                                 <div class="dropdown-content" style="min-width: 150px">
@@ -123,7 +130,7 @@ if($_SESSION['lang'] == 'arabic'){
                         </li>
 
                         <li class="menu-item"><a href="#"><?php echo $lang['manage_order']; ?></a></li>
-                        <li class="menu-item "><a href="#"><?php echo $lang['change_order_status']; ?></a></li>
+                        <li class="menu-item "><a href="change_status.php"><?php echo $lang['change_order_status']; ?></a></li>
                     </ul>
                 </nav>
             </div>

@@ -4,6 +4,25 @@
 html {
   overflow-x: hidden;
 }
+
+#google_translate_element > .goog-te-gadget > .goog-te-gadget-simple{
+  color: #ffffff;
+  border: 1px solid #4ebae3;
+  background-color: #4ebae3;
+}
+#google_translate_element > .goog-te-gadget > .goog-te-gadget-simple > img{
+  visibility: hidden;
+}
+#google_translate_element > .goog-te-gadget-simple {
+  color: white !important;
+}
+.container.header-con{
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  align-items: center;
+  min-height: 38px;
+}
 body {
   font-family: "Lato", sans-serif;
   font-size: 14px;
@@ -188,7 +207,7 @@ h1.logo {
   float: left !important;
 }
 
-.dropdown {
+.dropdown{
   position: relative;
   display: inline-block;
   float: right;

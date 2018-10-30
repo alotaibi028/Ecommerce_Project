@@ -21,26 +21,26 @@
                 <div>
                     <div class="supermartket-owl-carousel banner1" data-number="1" data-margin="0" data-navcontrol="yes">
                         <div class="item-slide">
-                            <img src="assets/images/slides/tard.jpg" alt="banner-img">
+                            <img height="445" src="assets/images/slides/tard.jpg" alt="banner-img">
                             <div class="item-slide-content item-slide-content3 slide1">
                                 <h4 class="sile-subtitle"></h4>
                                 <h2 class="slide-title"></h2>
-                                <a class="button1" href="#"><?php echo $lang['buy_now']; ?></a>
+                                
                             </div>
                         </div>
                         <div class="item-slide">
-                            <img src="assets/images/slides/trad3.jpg" alt="banner-img">
+                            <img height="445" src="assets/images/slides/trad3.jpg" alt="banner-img">
                             <div class="item-slide-content item-slide-content3 slide2">
                                 <h2 class="slide-title"></h2>
                                 <h4 class="sile-subtitle"></h4>
-                                <a class="button1" href="#"><?php echo $lang['buy_now']; ?></a>
+                                
                             </div>
                         </div>
                         <div class="item-slide">
-                            <img src="assets/images/slides/tard11.jpg" alt="banner-img">
+                            <img height="445" src="assets/images/slides/tard11.jpg" alt="banner-img">
                             <div class="item-slide-content item-slide-content3 slide3">
-                                <h3 class="slide-title"></span></h3>
-                                <a class="button1" href="#"><?php echo $lang['buy_now']; ?></a>
+                                <h3 class="slide-title"></h3>
+                                
                             </div>
                         </div>
                     </div>
@@ -48,8 +48,8 @@
             </div>
         </div>
     </section>
-
-    <section id="sicon">
+    
+    <section id="sicon" style="margin-top:-50px">
         <div class="container2">
             <div class="row" id="ricon">
                 <div class="icons">
@@ -98,7 +98,7 @@
                 <h4 class="tab-title"><?php echo $lang['food_item']; ?></h4>
                 <ul  class="nav nav-pills">
                     <li class="active"><a  href="#" data-toggle="tab"><?php echo $lang['new_arrival']; ?></a></li>
-                    <li><a href="#" data-toggle="tab"><?php echo $lang['sale_product']; ?></a></li>
+                    <!--<li><a href="#" data-toggle="tab"><?php echo $lang['sale_product']; ?></a></li>-->
                 </ul>
                 <div class="product-tabs-content tab-content clearfix equal-container">
                     <div class="tab-pane active" id="tab1">
@@ -114,15 +114,17 @@
 										<div class="product-media">
 											<figure>
 												<a href='product_detail.php?prodId=<?php echo $row['id']; ?>'><img src="assets/uploads/<?php echo $row['image']; ?>"
-																 alt="feature" width="202" height="239">
+																 alt="feature" width="280" height="150">
 												</a>
 											</figure>
 										</div>
-										<a href="product_detail.php?prodId=<?php echo $row['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $row['name']; ?>
-										<span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php echo $row2['types']; ?>)</span></a>
+										<center>
+										<a href="product_detail.php?prodId=<?php echo $row['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; } else {echo $row['name'];} ?><br>
+										<span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; }?>)</span></a>
 										<div class="feature-slide-cost">
 											<span class="price"><?php echo $lang['price']; ?>: <?php echo $row['price']; ?></span>
 										</div>
+										</center>
 								   
 								</div>
 								 <?php }
@@ -182,12 +184,12 @@
             <div class="product-tabs">
                 <h4 class="tab-title"><?php echo $lang['food_category']; ?></h4>
                 <ul  class="nav nav-pills">
-                    <li class="active"><a  href="#" data-toggle="tab"><?php echo $lang['dessert']; ?></a></li>
-                    <li><a href="#" data-toggle="tab"><?php echo $lang['baked']; ?></a></li>
-                    <li><a href="#" data-toggle="tab"><?php echo $lang['tr_food']; ?></a></li>
+                    <li class="active"><a  href="#dessert" data-toggle="pill"><?php echo $lang['dessert']; ?></a></li>
+                    <li><a href="#baked" data-toggle="pill"><?php echo $lang['baked']; ?></a></li>
+                    <li><a href="#tr" data-toggle="pill"><?php echo $lang['tr_food']; ?></a></li>
                 </ul>
                 <div class="product-tabs-content tab-content clearfix equal-container">
-                    <div class="tab-pane active" id="tab3">
+                    <div class="tab-pane active" id="dessert">
                         <div class="supermartket-owl-carousel" data-number="5" data-margin="0" >
                             <?php
                                 if(mysqli_num_rows($resultDesert) > 0) {
@@ -201,17 +203,19 @@
                                                 <figure>
                                                     <a href='product_detail.php?prodId=<?php echo $rowDesert['id']; ?>'><img
                                                             src="assets/uploads/<?php echo $rowDesert['image']; ?>"
-                                                            alt="feature" width="202" height="239">
+                                                            alt="feature" width="280" height="150">
                                                     </a>
                                                 </figure>
                                             </div>
+                                            <center>
                                             <a href="product_detail.php?prodId=<?php echo $rowDesert['id']; ?>"
-                                               class="feature-slide-name"><?php echo $rowDesert['name']; ?>
+                                               class="feature-slide-name"><?php if($_SESSION['lang'] == 'arabic'){ echo $rowDesert['name_ar']; }else{ echo $rowDesert['name']; } ?><br>
                                                 <span style="font-size: 12px;">
-												(<?php echo $lang['delivery']; ?>: <?php echo $rowD['types']; ?>)</span></a>
+												(<?php echo $lang['delivery']; ?>: <?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; } ?>)</span></a>
                                             <div class="feature-slide-cost">
                                                 <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowDesert['price']; ?></span>
                                             </div>
+                                            </center>
                                         </div>
                                     <?php }
                                 }else{
@@ -220,7 +224,7 @@
                             ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab4">
+                    <div class="tab-pane" id="baked">
                         <div class="supermartket-owl-carousel" data-number="5" data-margin="0">
                             <?php
                             if(mysqli_num_rows($resultBaked) > 0) {
@@ -233,16 +237,17 @@
                                         <div class="product-media">
                                             <figure>
                                                 <a href='product_detail.php?prodId=<?php echo $rowBaked['id']; ?>'><img src="assets/uploads/<?php echo $rowBaked['image']; ?>"
-                                                                                                                   alt="feature" width="202" height="239">
+                                                                                                                   alt="feature" width="280" height="150">
                                                 </a>
                                             </figure>
                                         </div>
-                                        <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $rowBaked['name']; ?>
+                                        <center>
+                                        <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $rowBaked['name']; ?><br>
                                             <span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php echo $rowD1['types']; ?>)</span></a>
                                         <div class="feature-slide-cost">
                                             <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowBaked['price']; ?></span>
                                         </div>
-
+                                        </center>
                                     </div>
                                 <?php }
                             }else{
@@ -251,7 +256,7 @@
                             ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab5">
+                    <div class="tab-pane" id="tr">
                         <div class="supermartket-owl-carousel" data-number="5" data-margin="0">
                             <?php
                             if(mysqli_num_rows($resultTr) > 0) {
@@ -264,18 +269,20 @@
                                         <div class="product-media">
                                             <figure>
                                                 <a href='product_detail.php?prodId=<?php echo $rowTr['id']; ?>'><img
-                                                        src="assets/uploads/<?php echo $rowTrt['image']; ?>"
-                                                        alt="feature" width="202" height="239">
+                                                        src="assets/uploads/<?php echo $rowTr['image']; ?>"
+                                                        alt="feature" width="280" height="150">
                                                 </a>
                                             </figure>
                                         </div>
+                                        <center>
                                         <a href="product_detail.php?prodId=<?php echo $rowTr['id']; ?>"
                                            class="feature-slide-name"><?php echo $rowTr['name']; ?>
-                                            <span style="font-size: 12px;">
+                                            <span style="font-size: 12px;"><br>
 											(<?php echo $lang['delivery']; ?>: <?php echo $rowD2['types']; ?>)</span></a>
                                         <div class="feature-slide-cost">
                                             <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowTr['price']; ?></span>
                                         </div>
+                                        </center>
                                     </div>
                                 <?php }
                             }else{

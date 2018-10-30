@@ -1,5 +1,11 @@
 <?php include '../includes/config.php';
 include "header.php";
+/**
+ * Created by PhpStorm.
+ * User: Hi
+ * Date: 10/5/2018
+ * Time: 9:42 AM
+ */
 
 $userId = $_SESSION['u_id'];
 $query = "SELECT p.name as 'Name', count(*) AS 'Total' FROM products p INNER JOIN order_products op ON p.id = op.product_id  INNER JOIN orders o
