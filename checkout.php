@@ -1,17 +1,14 @@
+
+
 <?php include 'includes/config.php';
 include 'header.php';
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 10/2/2018
- * Time: 10:20 PM
- */
+
 if(!isset($_SESSION['u_id'])){
     header('location:login.php?ref=checkout');
 }
 
 if(isset($_REQUEST['checkout'])){
-
+    echo 'success';
     $address2 ="";
     $cust_id = $_SESSION['u_id'];
     $address = $_REQUEST['address1'];
@@ -36,11 +33,12 @@ if(isset($_REQUEST['checkout'])){
                 ".$phone.",'".$pay_method."','".$order_date."','".$order_status."')";
         if(mysqli_query($con,$sql)) {
             $last_id = $con->insert_id;
-
+            
             foreach ($_SESSION["cart_item"] as $item) {
                 $prod_id = $item['id'];
                 $quantity = $item['quantity'];
                 $u_price = $item['price'];
+                $total+=$u_price;
                 $t_price = ($item['quantity'] * $item['price']);
                 $p_date = $item['p_date'];
                 $p_time = $item['p_time'];
@@ -48,8 +46,41 @@ if(isset($_REQUEST['checkout'])){
                 $sql2 = "INSERT INTO order_products VALUES (".$last_id.",".$prod_id.",".$quantity.",".$u_price.",
                         ".$t_price.",'".$p_date."','".$p_time."','".$c_ingred."')";
                 mysqli_query($con, $sql2);
-                unset($_SESSION["cart_item"]);
             }
+			// email
+// Create the email and send the message
+$to =strip_tags($_SESSION['u_email']); // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
+$email_subject = "Congratulation Your order has been placed";
+ // PREPARE THE BODY OF THE MESSAGE
+  $total_quantity = 0;
+            $total_price = 0;
+		$email_body = '<html><body>';
+			$email_body .= '<h2><center>'.$lang['order_summary'].'</center></h2><br />';
+			$email_body .= '<div style="background-color: gainsboro"><table class="tbl-cart" cellpadding="10" style="margin-left: 10%" cellspacing="1"><tbody><tr>';
+			$email_body .= '<th style="text-align:left;">'.$lang['name'].'</th><th style="text-align:right;" width="5%">'. $lang['quantity'].'</th><th style="text-align:right;" width="25%">'. $lang['unit_price'].'</th><th style="text-align:right;" width="25%">'. $lang['price'].'</th> </tr>';
+				foreach ($_SESSION["cart_item"] as $item){
+                    $item_price = $item["quantity"]*$item["price"];
+                    $sql = "select * from products where id = ".$item['id'];
+                    $result = mysqli_query($con, $sql);
+                    $row = $result ->fetch_array();
+                    $item_price = $item["quantity"]*$item["price"];
+					if($_SESSION['lang'] == 'arabic'){ $pname = $row['name_ar']; }else{ $pname =  $row['name'];};
+				
+			$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "$ ".$item["price"] .'</td><td  style="text-align:right;">'. "$ ". number_format($item_price,2).'</td></tr>';
+				}
+				$total_quantity += $item["quantity"];
+                    $total_price += ($item["price"]*$item["quantity"]);
+			$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "$ ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
+			$email_body .= "</body></html>";
+			
+			$headers = "From: anassiddiqui278@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+			$headers .= "Reply-To: anassiddiqui278@gmail.com\r\n";
+			$headers .= "MIME-Version: 1.0\r\n";
+			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+			$headers .= "X-Mailer: PHP/".phpversion();   
+mail($to,$email_subject,$email_body,$headers);
+                unset($_SESSION["cart_item"]);
+
 //            header('location:orderstatus.php');
             echo '<script type="text/javascript">';
             echo 'window.location.href="orderstatus.php";';
@@ -129,24 +160,38 @@ if(isset($_REQUEST['checkout'])){
                 <label><?php echo $lang['phone_no']; ?>:*</label>
                 <input type="number" name="pnumber" id="price" placeholder="<?php echo $lang['enter_phone_no']; ?>" required/>
             </div><br><br>
-
+            
             <div class="">
                 <label><?php echo $lang['payment_type']; ?>:*</label>
                 <div class="innerBox">
-                    <span><input style="margin-left: 1%" type="radio" name="payCheckout" value="0" checked><?php echo $lang['pay_on_delivery']; ?></span>
-                    <span><input type="radio" name="payCheckout" value="1"><?php echo $lang['pay_now']; ?></span>
+                    <span><input class="payselect" style="margin-left: 1%" type="radio" name="payCheckout" value="0" checked><?php echo $lang['pay_on_delivery']; ?></span>
+                    <span><input class="payselect" type="radio" name="payCheckout" value="1"><?php echo $lang['pay_now']; ?></span>
                 </div>
             </div><br>
-            <div class="">
-                <label><?php echo $lang['delivery_type']; ?>:*</label>
-                <div class="innerBox">
-                    <span><input style="margin-left: 1%" type="radio" name="delivery_type" value="0" checked><?php echo $lang['with_delivery']; ?></span>
-                    <span><input type="radio" name="delivery_type" value="1"><?php echo $lang['no_delivery']; ?></span>
-                </div>
-            </div><br><br>
-
-            <div  class="subBtn">
-                <input type="submit" name="checkout" value="<?php echo $lang['proceed']; ?>"/>
+            <div id="paymentbox" style="display:none">
+            <div  class="secBox">
+                <label>Card No:*</label>
+                <input type="text" name="card_num" id="card_num" placeholder="" />
+            </div><br>
+            
+            <div  class="secBox">
+                <label>Exp Month:*</label>
+                <input type="text" name="exp_month" id="exp_month" placeholder="" />
+            </div><br>
+               
+            <div  class="secBox">
+                <label>Exp Year:*</label>
+                <input type="text" name="exp_year" id="exp_year" placeholder="" />
+            </div><br>
+            
+            <div  class="secBox">
+                <label>CVC Code:*</label>
+                <input type="text" name="cvc" id="cvc" placeholder="" />
+            </div><br>
+            </div>
+            <div class="payment-errors" style="color:red"></div>
+            <div  class="subBtn"><br>
+                <input type="submit" id="checkoutBtn" name="checkout" value="<?php echo $lang['proceed']; ?>"/>
             </div>
 
         </form>
@@ -204,3 +249,56 @@ if(isset($_REQUEST['checkout'])){
 </div>
 
 <?php include 'footer.php'; ?>
+<script>
+$(".payselect").click(function(){
+    var value = $(this).val();
+    if(value==1){
+        $("#paymentbox").show();
+    }else{
+       $("#paymentbox").hide();
+    }
+
+});
+</script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+
+//set your publishable key
+Stripe.setPublishableKey('pk_test_rZOYz6k0yWkz494YXqUCZb4b');
+
+//callback to handle the response from stripe
+function stripeResponseHandler(status, response) {
+    if (response.error) {
+        //enable the submit button
+        //$('#checkoutBtn').attr("value", 'Book Now');
+        //display the errors on the form
+        $(".payment-errors").html('<div class="alert alert-danger"><strong>Error! </strong>'+response.error.message+' </div>');
+    }else{
+        var form$ = $("#addForm");
+        //get token id
+        var token = response['id'];
+        //insert the token into the form
+        form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+        form$.attr('action', 'paynowcheckout.php');
+        form$.submit();
+    }
+}
+    
+$("#checkoutBtn").click(function(){
+     var value = $('input[name=payCheckout]:checked').val();
+     if(value==1){
+        Stripe.createToken({
+        number: $('#card_num').val(),
+        cvc: $('#cvc').val(),
+        exp_month: $('#exp_month').val(),
+        exp_year: $('#exp_year').val()
+    }, stripeResponseHandler);
+      return false;
+     }else{
+        //$("#addForm").submit();
+     }
+      
+    });
+  
+</script>
+

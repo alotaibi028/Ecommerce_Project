@@ -131,6 +131,7 @@ if($_SESSION['lang'] == 'arabic'){
 
                         <li class="menu-item"><a href="#"><?php echo $lang['manage_order']; ?></a></li>
                         <li class="menu-item "><a href="change_status.php"><?php echo $lang['change_order_status']; ?></a></li>
+                        <li class="menu-item "><a href="earnings.php">Earnings</a></li>
                     </ul>
                 </nav>
             </div>

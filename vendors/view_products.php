@@ -1,11 +1,5 @@
 <?php include '../includes/config.php';
 include "header.php";
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 10/5/2018
- * Time: 7:49 AM
- */
 
 
 $query = "SELECT * FROM products p WHERE p.added_by = ".$_SESSION['u_id'];

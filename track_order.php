@@ -1,11 +1,6 @@
 <?php include 'includes/config.php';
 include "header.php";
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 10/7/2018
- * Time: 7:39 PM
- */
+
 $query = "SELECT * FROM orders o WHERE o.cust_id = ".$_SESSION['u_id']." group by o.id";
 
 $result = mysqli_query($con,$query);

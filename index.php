@@ -1,5 +1,6 @@
-<?php   include 'includes/config.php';
-        include 'header.php';
+<?php   
+    include 'includes/config.php';
+    include 'header.php';
 
     $sql = "select * from `products` order by date_added desc";
     $result = mysqli_query($con, $sql);
@@ -106,9 +107,7 @@
 						<?php 
                         if(mysqli_num_rows($result) > 0) {
 							while($row = $result -> fetch_array()){
-								$query2 = "select * from deliverytypes where id = " . $row['delivery_type_id'];
-								$result3 = mysqli_query($con, $query2);
-								$row2 = $result3->fetch_array();
+								
 								?>
 								<div class="product-list-content equal-elem">
 										<div class="product-media">
@@ -120,7 +119,7 @@
 										</div>
 										<center>
 										<a href="product_detail.php?prodId=<?php echo $row['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; } else {echo $row['name'];} ?><br>
-										<span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; }?>)</span></a>
+										</a>
 										<div class="feature-slide-cost">
 											<span class="price"><?php echo $lang['price']; ?>: <?php echo $row['price']; ?></span>
 										</div>
@@ -148,7 +147,7 @@
 											</figure>
 										</div>
 										<a href="product_detail.php?prodId=<?php echo $row['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $row['name']; ?>
-										<span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: Available)</span></a>
+										</a>
 										<div class="feature-slide-cost">
 											<span class="price"><?php echo $lang['price']; ?>: <?php echo $row['price']; ?></span>
 										</div>
@@ -210,8 +209,7 @@
                                             <center>
                                             <a href="product_detail.php?prodId=<?php echo $rowDesert['id']; ?>"
                                                class="feature-slide-name"><?php if($_SESSION['lang'] == 'arabic'){ echo $rowDesert['name_ar']; }else{ echo $rowDesert['name']; } ?><br>
-                                                <span style="font-size: 12px;">
-												(<?php echo $lang['delivery']; ?>: <?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; } ?>)</span></a>
+                                                </a>
                                             <div class="feature-slide-cost">
                                                 <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowDesert['price']; ?></span>
                                             </div>
@@ -229,9 +227,7 @@
                             <?php
                             if(mysqli_num_rows($resultBaked) > 0) {
                                 while ($rowBaked = $resultBaked->fetch_array()) {
-                                    $queryD1 = "select * from deliverytypes where id = " . $rowBaked['delivery_type_id'];
-                                    $resultD1 = mysqli_query($con, $queryD1);
-                                    $rowD1 = $resultD1->fetch_array();
+                                    
                                     ?>
                                     <div class="product-list-content equal-elem">
                                         <div class="product-media">
@@ -243,7 +239,7 @@
                                         </div>
                                         <center>
                                         <a href="product_detail.php?prodId=<?php echo $rowBaked['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php echo $rowBaked['name']; ?><br>
-                                            <span style="font-size: 12px;">(<?php echo $lang['delivery']; ?>: <?php echo $rowD1['types']; ?>)</span></a>
+                                           </a>
                                         <div class="feature-slide-cost">
                                             <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowBaked['price']; ?></span>
                                         </div>
@@ -277,8 +273,7 @@
                                         <center>
                                         <a href="product_detail.php?prodId=<?php echo $rowTr['id']; ?>"
                                            class="feature-slide-name"><?php echo $rowTr['name']; ?>
-                                            <span style="font-size: 12px;"><br>
-											(<?php echo $lang['delivery']; ?>: <?php echo $rowD2['types']; ?>)</span></a>
+                                            </a>
                                         <div class="feature-slide-cost">
                                             <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowTr['price']; ?></span>
                                         </div>

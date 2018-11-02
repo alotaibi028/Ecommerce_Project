@@ -1,12 +1,7 @@
 <?php include 'includes/config.php';
 ob_start();
 include 'header.php';
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 10/3/2018
- * Time: 9:57 PM
- */
+
 
 if(isset($_REQUEST['submit'])){
 

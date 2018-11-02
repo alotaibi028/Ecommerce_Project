@@ -14,15 +14,25 @@
     }
 ?>
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Productive Families</title>
-    <link rel='stylesheet' href='assets/css/owl.carousel.min.css'>
-    <link rel='stylesheet' href='assets/css/font-awesome.css'>
-    <link rel='stylesheet' href='assets/css/jquery.mmenu.all.css'>
-    <link rel='stylesheet' href='assets/css/flaticon.css'>
-    <link rel='stylesheet' href='assets/css/style.css'>
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/jquery.mmenu.all.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i;Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type='text/javascript' src='assets/js/jquery.min.js'></script>
+<script type='text/javascript' src='assets/js/wow.min.js'></script>
+<script type='text/javascript' src='assets/js/owl.carousel.min.js'></script>
+<script type='text/javascript' src='assets/js/jquery.appear.min.js'></script>
+<script type='text/javascript' src='assets/js/jquery.bxslider.min.js'></script>
+<script type='text/javascript' src='assets/js/jquery.mmenu.all.min.js'></script>
+<script type='text/javascript' src='assets/js/chosen.jquery.min.js'></script>
+<script type='text/javascript' src='assets/js/frontend.js'></script>
 </head>
 <body>
 	<header>
@@ -134,7 +144,9 @@
                             <li class="menu-item"><a href="track_order.php"><?php echo $lang['track_order']; ?></a></li>
                         <?php }else if(isset($_SESSION['u_id']) && $_SESSION['u_type'] == 'vendor'){ ?>
                             <li class="menu-item"><a href="vendors/add_products.php"><?php echo $lang['my_account']; ?></a></li>
-                        <?php }?>
+                        <?php }else if(isset($_SESSION['u_id']) && $_SESSION['u_type'] == 'admin'){ ?>
+                            <li class="menu-item"><a href="admin/view_users.php">Admin Panel</a></li>
+                        <?php } ?>
                         <li class="menu-item "><a href="#"><?php echo $lang['about_us']; ?></a></li>
                         <li class="menu-item"><a href="#"><?php echo $lang['contact_us']; ?></a></li>
                     </ul>

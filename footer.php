@@ -55,13 +55,3 @@
     <a href="#" class="backtotop ts-block"><span><?php echo $lang['top']; ?></span></a>
 
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='assets/js/jquery.min.js'></script>
-<script type='text/javascript' src='assets/js/wow.min.js'></script>
-<script type='text/javascript' src='assets/js/owl.carousel.min.js'></script>
-<script type='text/javascript' src='assets/js/jquery.appear.min.js'></script>
-<script type='text/javascript' src='assets/js/jquery.bxslider.min.js'></script>
-<script type='text/javascript' src='assets/js/jquery.mmenu.all.min.js'></script>
-<script type='text/javascript' src='assets/js/chosen.jquery.min.js'></script>
-<script type='text/javascript' src='assets/js/frontend.js'></script>

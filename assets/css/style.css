@@ -416,7 +416,7 @@ h1.logo {
 .container2{
   float: left;
   width: 100%;
-  padding: 0px 40px !important;
+  /*padding: 0px 40px !important;*/
 }
 .product-tabs {
   display: inline-block;
@@ -501,7 +501,7 @@ ul, li {
   display: inline-block;
 }
 .feature-slide-name,.feature-slide-cost{
-  padding-left: 40px !important;
+  /*padding-left: 40px !important;*/
 }
 .product-tabs-content.equal-container {
   overflow: hidden;
@@ -993,7 +993,7 @@ html[dir="rtl"] .secItm{
   float: right !important;
 }
 #addForm input{
-  float: right !important;
+  /*float: right !important;*/
 }
 #addForm input[type="submit"]{
   float: none !important;

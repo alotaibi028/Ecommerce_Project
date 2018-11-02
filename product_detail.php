@@ -1,11 +1,6 @@
 <?php   include 'includes/config.php';
 include 'header.php';
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 9/7/2018
- * Time: 8:24 AM
- */
+
 if(!empty($_REQUEST["action"])) {
     switch($_REQUEST["action"]) {
         case "add":
@@ -90,17 +85,14 @@ if(!empty($_REQUEST["action"])) {
             $result2 = mysqli_query($con, $query1);
             $row1 = $result2->fetch_array();
 
-            $query2 = "select * from deliverytypes where id = " . $row['delivery_type_id'];
-            $result3 = mysqli_query($con, $query2);
-            $row2 = $result3->fetch_array();
-
+           
             $query3 = "select * from producttypes where id = " . $row['product_type_id'];
             $result4 = mysqli_query($con, $query3);
             $row3 = $result4->fetch_array();
         }
         ?>
         <div id="midBox">
-            <div id="tSec"><h2><?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; }?> <?php echo $lang['item']; ?></h2></div>
+            <div id="tSec"><h2><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; }else{ echo $row['name']; }?></h2></div>
             <div id="picBox">
                 <br>
                 <img src="assets/uploads/<?php echo $row['image'];?>" width="100%" height="400px"/>
@@ -108,7 +100,7 @@ if(!empty($_REQUEST["action"])) {
             </div>
             <div id="desBox">
                     <form method="post" action="product_detail.php?action=add&pId=<?php echo $pid ?>">
-                        <h3><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; }else{ echo $row['name']; }?></h3>
+                       
                         <span id="prTxt"><b><?php echo $lang['price']; ?></b>: <?php echo $row['price'];?> $</span><br>
                         <span><b><?php echo $lang['availability']; ?>:</b> <?php echo $row1['quantity'];?></span>
                         <p><b><?php echo $lang['description']; ?>:</b> <?php if($_SESSION['lang'] == 'arabic'){ echo $row['description_ar']; }else{ echo $row['description']; }?></p>
@@ -128,7 +120,7 @@ if(!empty($_REQUEST["action"])) {
                             <option>09:00 PM</option>
                         </select><br>
                         <br>
-                        <span><b><?php echo $lang['delivery']; ?>:</b> <?php if($_SESSION['lang'] == 'arabic'){ echo $row2['types_ar']; }else{ echo $row2['types']; }?></span><br><br>
+                        
                         <textarea name="custom_ingredients" id="cs_ingred" value="" placeholder="<?php echo $lang['add_cust']; ?>" rows="5" cols="40"></textarea><br><br><br><br>
                         <input type="submit" name="addCart" id="addCr" value="<?php echo $lang['add_to_cart']; ?>"/>
                         <br>

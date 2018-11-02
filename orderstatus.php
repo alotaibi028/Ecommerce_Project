@@ -1,11 +1,6 @@
 <?php include 'includes/config.php';
 include 'header.php';
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 10/5/2018
- * Time: 7:37 AM
- */
+
 
 if(!isset($_SESSION['u_id'])){
     header('location:login.php');

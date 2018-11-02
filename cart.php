@@ -1,12 +1,7 @@
 <?php include 'includes/config.php';
     include 'header.php';
 
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 9/8/2018
- * Time: 11:03 PM
- */
+
 ?>
 <div class = "container">
     <div><?php echo $lang['shopping_cart']; ?></div>

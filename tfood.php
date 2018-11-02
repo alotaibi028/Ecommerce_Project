@@ -1,11 +1,6 @@
 <?php include 'includes/config.php';
 include 'header.php';
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 9/11/2018
- * Time: 10:35 PM
- */
+
 $queryTr = "select * from products where product_type_id=1";
 $resultTr = mysqli_query($con, $queryTr);
 ?>
@@ -61,8 +56,7 @@ $resultTr = mysqli_query($con, $queryTr);
                 <center>
                 <a href="product_detail.php?prodId=<?php echo $rowTr['id']; ?>"
                    class="feature-slide-name"><?php echo $rowTr['name']; ?></a><br>
-                    <span style="font-size: 10px;">
-                        (<?php echo $lang['delivery']; ?>:  <?php if($_SESSION['lang'] == 'arabic'){ echo $rowD['types_ar']; }else{ echo $rowD['types']; } ?>)</span>
+
                 <div class="feature-slide-cost">
                     <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowTr['price']; ?></span>
                 </div>

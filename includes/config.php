@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 8/2/2018
- * Time: 8:06 AM
- */
+
 
 $db_host = "localhost";
 $db_username = "root";
-$db_password = "7606MA";
-$db_name = "ecommerce_db";
+$db_password = "";
+$db_name = "com";
 
 $con = mysqli_connect($db_host,$db_username,$db_password,$db_name);
 

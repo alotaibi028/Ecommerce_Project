@@ -1,12 +1,7 @@
 <?php include 'includes/config.php';
 include "header.php";
 
-/**
- * Created by PhpStorm.
- * User: Hi
- * Date: 10/7/2018
- * Time: 9:43 PM
- */
+
 
 $query = "SELECT * FROM orders o WHERE o.id = ".$_REQUEST['id']." group by o.id";
 
