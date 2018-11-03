@@ -1,4 +1,0 @@
-[03-Nov-2018 05:06:47 Asia/Karachi] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/corex/public_html/ecommerce2/vendors/view_orders.php:36
-Stack trace:
-#0 {main}
-  thrown in /home/corex/public_html/ecommerce2/vendors/view_orders.php on line 36
