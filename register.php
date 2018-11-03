@@ -36,7 +36,11 @@ if(isset($_REQUEST['submit'])){
             $_SESSION['u_lname'] = $row['lname'];
             $_SESSION['u_email'] = $row['email'];
             $_SESSION['u_type'] = $row['type'];
-            header('location:index.php');
+            ?>
+			<script>
+			window.location.href="index.php"
+			</script>
+			<?php
         }else{
             echo mysqli_error($con);
         }
