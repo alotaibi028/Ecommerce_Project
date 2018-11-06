@@ -68,7 +68,7 @@ p {
   display: inline-block;
   float: left;
   margin: 17px 0 0 65px;
-  margin-left:50%;
+  margin-left:60%;
 }
 .cart-menu {
   position: relative;
@@ -264,7 +264,7 @@ h1.logo {
 }
 .form-search-header input {
   padding: 0 25px;
-  width: 320px;
+  width: 150px;
   margin-top: 2px;
 }
 .form-search-header .button-search {
@@ -573,6 +573,13 @@ ul, li {
 .footer-bottom {
   text-align: center;
 }
+#webname{
+      
+     width:80% !important;
+     font-size:30px;
+     position:relative;
+     top: 55px;
+  }
 /*RESPONSIVE DESIGN*/
 @media screen and (max-width: 767px) {
   body header .form-search-header .button-search {
@@ -587,6 +594,11 @@ ul, li {
     margin: 0;
     text-align: center;
     width: 14%;
+  }
+  #webname{
+      
+     width:100% !important;
+     top:0 !important;
   }
   body header .header-search {
     margin: 17px auto;
@@ -879,7 +891,7 @@ h2{
 }
 /*ADD PRODUCT*/
 #addForm input[type="text"],input[type="email"],input[type="password"],input[type="number"],#addForm input[type="number"],#addForm textarea,#addForm select{
-  width: 60% !important;
+  width: 55% !important;
 }
 label{
   padding: 0px 20px;
@@ -925,7 +937,7 @@ html[dir="rtl"] .logo {
 html[dir="rtl"] .header-search {
   float: right;
   margin-left: 0%;
-  margin-right: 50%;
+  margin-right: 60%;
 }
 html[dir="rtl"] .button-search{
   border-radius: 5px 0px 0px 5px;

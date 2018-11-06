@@ -33,10 +33,10 @@
             <tr>
                 <td><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; }else{ echo $row['name']; }?></td>
                 <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
-                <td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
+                <td  style="text-align:right;"><?php echo $item["price"]. ' ' . $lang['currency']; ?></td>
                 <td  style="text-align:right;"><?php echo $item["p_date"]; ?></td>
                 <td  style="text-align:right;"><?php echo $item["p_time"]; ?></td>
-                <td  style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
+                <td  style="text-align:right;"><?php echo number_format($item_price,2). ' ' . $lang['currency']; ?></td>
                 <td  style="text-align:center;"><a href="product_detail.php?action=remove&pId=<?php echo $item['id']; ?>">
                         <input type="button" value="X"/></a></td>
             </tr>
@@ -49,7 +49,7 @@
     <tr>
         <td colspan="4" align="right"><?php echo $lang['total']; ?>: </td>
         <td align="right"><?php echo $total_quantity; ?></td>
-        <td align="right" colspan="1"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
+        <td align="right" colspan="1"><strong><?php echo number_format($total_price, 2). ' ' . $lang['currency']; ?></strong></td>
         <td></td>
     </tr>
     </tbody>

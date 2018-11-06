@@ -11,12 +11,12 @@ if(isset($_REQUEST['checkout'])){
     echo 'success';
     $address2 ="";
     $cust_id = $_SESSION['u_id'];
-    $address = $_REQUEST['address1'];
-    $address2 = $_REQUEST['address2'];
-    $city = $_REQUEST['pcity'];
-    $country = $_REQUEST['pcountry'];
-    $phone = $_REQUEST['pnumber'];
-    $pay_method = $_REQUEST['payCheckout'];
+    $address = mysqli_real_escape_string($con, $_REQUEST['address1']);
+    $address2 = mysqli_real_escape_string($con, $_REQUEST['address2']);
+    $city = mysqli_real_escape_string($con, $_REQUEST['pcity']);
+    $country = mysqli_real_escape_string($con, $_REQUEST['pcountry']);
+    $phone = mysqli_real_escape_string($con, $_REQUEST['pnumber']);
+    $pay_method = mysqli_real_escape_string($con, $_REQUEST['payCheckout']);
     $order_date = date('Y-m-d H:m:s');
     $order_status = 'active';
 
@@ -73,8 +73,8 @@ $email_subject = "Congratulation Your order has been placed";
 			$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "$ ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
 			$email_body .= "</body></html>";
 			
-			$headers = "From: anassiddiqui278@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-			$headers .= "Reply-To: anassiddiqui278@gmail.com\r\n";
+			$headers = "From: otaibimk1428@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+			$headers .= "Reply-To: otaibimk1428@gmail.com\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 			$headers .= "X-Mailer: PHP/".phpversion();   
@@ -118,12 +118,14 @@ mail($to,$email_subject,$email_body,$headers);
 
             <div class="secBox">
                 <label><?php echo $lang['first_name']; ?>:*</label>
-                <input type="text" name="fname" value="<?php echo $_SESSION['u_fname']; ?>" placeholder="Enter First Name" />
+                <input type="text" pattern=
+"[أ-يa-zA-Z ]{1,}" title="Only Alphabets or arabic" name="fname" value="<?php echo $_SESSION['u_fname']; ?>" placeholder="Enter First Name" />
             </div><br>
 
             <div class="secBox">
                 <label><?php echo $lang['last_name']; ?>:*</label>
-                <input type="text" name="lname" value="<?php echo $_SESSION['u_lname']; ?>" placeholder="Enter Last Name" />
+                <input type="text"  pattern=
+"[أ-يa-zA-Z ]{1,}" title="Only Alphabets or arabic" name="lname" value="<?php echo $_SESSION['u_lname']; ?>" placeholder="Enter Last Name" />
             </div><br>
 
             <div class="secBox">
@@ -158,7 +160,7 @@ mail($to,$email_subject,$email_body,$headers);
 
             <div  class="secBox">
                 <label><?php echo $lang['phone_no']; ?>:*</label>
-                <input type="number" name="pnumber" id="price" placeholder="<?php echo $lang['enter_phone_no']; ?>" required/>
+                <input type="text" name="pnumber"  pattern="[0-9]{10}" title="Valid Phone number only" id="price" placeholder="<?php echo $lang['enter_phone_no']; ?>" required/>
             </div><br><br>
             
             <div class="">
@@ -223,8 +225,8 @@ mail($to,$email_subject,$email_body,$headers);
                     <tr>
                         <td><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; }else{ echo $row['name']; } ?></td>
                         <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
-                        <td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
-                        <td  style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
+                        <td  style="text-align:right;"><?php echo $item["price"].' '.$lang['currency']; ?></td>
+                        <td  style="text-align:right;"><?php echo number_format($item_price,2).' '.$lang['currency']; ?></td>
                     </tr>
                     <?php
                     $total_quantity += $item["quantity"];
@@ -235,7 +237,7 @@ mail($to,$email_subject,$email_body,$headers);
                 <tr>
                     <td colspan="1" align="right"><?php echo $lang['total']; ?>: </td>
                     <td align="right"><?php echo $total_quantity; ?></td>
-                    <td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
+                    <td align="right" colspan="2"><strong><?php echo number_format($total_price, 2).' '.$lang['currency']; ?></strong></td>
                     <td></td>
                 </tr>
                 </tbody>

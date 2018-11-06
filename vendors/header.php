@@ -49,9 +49,9 @@ if($_SESSION['lang'] == 'arabic'){
                     </p>
                     <div class="dropdown">
                         <?php if($_SESSION['lang'] === 'english'){?>
-                            <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=english"><button>English</button></a>
+                            <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=english"><button style="height:20px">English</button></a>
                         <?php }else{?>
-                            <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=arabic"><button>العربية</button></a>
+                            <a href="<?php if(@$_GET['action']=="update"){echo 'view_products.php';} ?>?lang=arabic"><button style="height:20px">العربية</button></a>
                         <?php } ?>
                         <div class="dropdown-content">
                             <?php if($_SESSION['lang'] === 'english'){ ?>
@@ -71,10 +71,12 @@ if($_SESSION['lang'] == 'arabic'){
                         <a href="index.php">
                             <img src="../assets/images/logo.png" alt="logo">
                         </a>
+                       <h2 id="webname">&nbsp;&nbsp;&nbsp;<?php echo $lang['webname']; ?></h2>
+
                     </h1>
                     <div class="header-search">
-                        <form action="form.php" class="form form-search-header">
-                            <input type="text" placeholder="<?php echo $lang['search']; ?>...">
+                         <form action="search.php" method="get" class="form form-search-header">
+                            <input type="text" name="search" required placeholder="<?php echo $lang['search']; ?>...">
                             <button class="button-search"><i class="flaticon-search"></i></button>
                         </form>
                     </div>

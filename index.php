@@ -50,7 +50,7 @@
         </div>
     </section>
     
-    <section id="sicon" style="margin-top:-50px">
+    <!--<section id="sicon" style="margin-top:-50px;display:none">
         <div class="container2">
             <div class="row" id="ricon">
                 <div class="icons">
@@ -91,11 +91,11 @@
                     </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
     <section>
         <div class="container">
-            <div class="product-tabs">
+            <div class="product-tabs" style="float:none">
                 <h4 class="tab-title"><?php echo $lang['food_item']; ?></h4>
                 <ul  class="nav nav-pills">
                     <li class="active"><a  href="#" data-toggle="tab"><?php echo $lang['new_arrival']; ?></a></li>
@@ -121,7 +121,7 @@
 										<a href="product_detail.php?prodId=<?php echo $row['id']; ?>" class="feature-slide-name" style="font-size: 15px;"><?php if($_SESSION['lang'] == 'arabic'){ echo $row['name_ar']; } else {echo $row['name'];} ?><br>
 										</a>
 										<div class="feature-slide-cost">
-											<span class="price"><?php echo $lang['price']; ?>: <?php echo $row['price']; ?></span>
+											<span class="price"><?php echo $lang['price']; ?>: <?php echo $row['price']. ' ' . $lang['currency']; ?></span>
 										</div>
 										</center>
 								   
@@ -162,24 +162,29 @@
                 </div>
             </div>
         </div>
+        
     </section>
 
-    <section>
+   
+
+<?php	include("footer.php"); ?>
+
+
+
+ <!--<section style="display:none">
         <div class="container">
             <div class="row">
                 <div>
                     <div>
                         <figure>
-                            <a href=""><img alt="" style="padding: 20px 0px" src="assets/images/slides/tard1.jpg"></a>
+                            <a href=""><img alt="" style="padding: 20px 0px;width:100%;height:400px;" src="assets/images/slides/tard1.jpg"></a>
                         </figure>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
+        </div></section>
+    
+        <div class="container" style="display:none">
             <div class="product-tabs">
                 <h4 class="tab-title"><?php echo $lang['food_category']; ?></h4>
                 <ul  class="nav nav-pills">
@@ -257,9 +262,9 @@
                             <?php
                             if(mysqli_num_rows($resultTr) > 0) {
                                 while ($rowTr = $resultTr->fetch_array()) {
-                                    $queryD2 = "select * from deliverytypes where id = " . $rowTr['delivery_type_id'];
+                                    /*$queryD2 = "select * from deliverytypes where id = " . $rowTr['delivery_type_id'];
                                     $resultD2 = mysqli_query($con, $queryD2);
-                                    $rowD2 = $resultD2->fetch_array();
+                                    $rowD2 = $resultD2->fetch_array();*/
                                     ?>
                                     <div class="product-list-content equal-elem">
                                         <div class="product-media">
@@ -310,5 +315,4 @@
             </div>
         </div>
     </section>
-
-<?php	include("footer.php"); ?>
+    </div>-->

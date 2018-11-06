@@ -141,4 +141,6 @@ $lang = array(
 	'action'=>'Action',
 	'update'=>'Update',
 	'delete'=>'Delete',
+	'currency'=>'SR',
+	'webname'=>'Cottage Industry Virtual Market',
 );

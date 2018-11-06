@@ -142,4 +142,6 @@ $lang = array(
 	'action'=>'عمل',
 	'update'=>'تحديث',
 	'delete'=>'حذف',
+	'currency'=>'﷼‎',
+    'webname'=>'الأسر المنتجة',
 );

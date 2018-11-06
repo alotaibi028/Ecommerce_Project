@@ -2,3 +2,11 @@
 Stack trace:
 #0 {main}
   thrown in /home/corex/public_html/ecommerce2/vendors/view_orders.php on line 36
+[04-Nov-2018 19:41:29 Asia/Karachi] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/corex/public_html/ecommerce2/vendors/order_history.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/corex/public_html/ecommerce2/vendors/order_history.php on line 31
+[05-Nov-2018 21:53:48 Asia/Karachi] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/corex/public_html/ecommerce2/vendors/earnings.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/corex/public_html/ecommerce2/vendors/earnings.php on line 15

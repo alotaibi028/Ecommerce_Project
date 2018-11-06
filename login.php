@@ -5,10 +5,9 @@ include 'header.php';
 
 if(isset($_REQUEST['submit'])){
 
-    $userEmail = $_REQUEST['uemail'];
-    $userPass = $_REQUEST['upass'];
-
-    $sql = "SELECT * FROM users WHERE email = '".$userEmail."' And password = '".$userPass."';";
+    $userEmail = mysqli_real_escape_string($con,$_REQUEST['uemail']);
+    $userPass =  crypt($_REQUEST['upass'], '$1$somethin$');
+    $sql = "SELECT * FROM users WHERE email='$userEmail' && password='$userPass'";;
     $results = mysqli_query($con,$sql);
 
     if(mysqli_num_rows($results) > 0){
@@ -36,6 +35,9 @@ if(isset($_REQUEST['submit'])){
         background-color: #4ebae3;
         border-color: transparent;
         color: white;
+    }
+    label{
+        width:150px;
     }
 </style>
 <div class = "container" style="width: 90%;">

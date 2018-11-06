@@ -101,7 +101,7 @@ if(!empty($_REQUEST["action"])) {
             <div id="desBox">
                     <form method="post" action="product_detail.php?action=add&pId=<?php echo $pid ?>">
                        
-                        <span id="prTxt"><b><?php echo $lang['price']; ?></b>: <?php echo $row['price'];?> $</span><br>
+                        <span id="prTxt"><b><?php echo $lang['price']; ?></b>: <?php echo $row['price']. ' ' . $lang['currency'];?></span><br>
                         <span><b><?php echo $lang['availability']; ?>:</b> <?php echo $row1['quantity'];?></span>
                         <p><b><?php echo $lang['description']; ?>:</b> <?php if($_SESSION['lang'] == 'arabic'){ echo $row['description_ar']; }else{ echo $row['description']; }?></p>
 
@@ -113,11 +113,10 @@ if(!empty($_REQUEST["action"])) {
                         <br>
                         <span><b><?php echo $lang['pick_time']; ?>:</b></span><br>
                         <select id="timeSlot" name="timeSlot">
+                            <option>07:00 AM</option>
+                            <option>08:00 AM</option>
                             <option>09:00 AM</option>
-                            <option>01:00 PM</option>
-                            <option>04:00 PM</option>
-                            <option>06:00 PM</option>
-                            <option>09:00 PM</option>
+                            <option>10:00 AM</option>
                         </select><br>
                         <br>
                         

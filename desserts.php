@@ -40,9 +40,9 @@ $resultDesert = mysqli_query($con, $queryDesert);
 
             if(mysqli_num_rows($resultDesert) > 0) {
                 while ($rowDesert = $resultDesert->fetch_array()) {
-                $queryD = "select * from deliverytypes where id = " . $rowDesert['delivery_type_id'];
+                /*$queryD = "select * from deliverytypes where id = " . $rowDesert['delivery_type_id'];
                 $resultD = mysqli_query($con, $queryD);
-                $rowD = $resultD->fetch_array();
+                $rowD = $resultD->fetch_array();*/
             ?>
             <div class="secItm">
                 <div class="product-media">
@@ -58,7 +58,7 @@ $resultDesert = mysqli_query($con, $queryDesert);
                    class="feature-slide-name"><?php echo $rowDesert['name']; ?></a><br>
                     
                 <div class="feature-slide-cost">
-                    <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowDesert['price']; ?></span>
+                    <span class="price"><?php echo $lang['price']; ?>: <?php echo $rowDesert['price']. ' ' . $lang['currency']; ?></span>
                 </div>
                 <div class="cartBtn">
                     <a href="product_detail.php?prodId=<?php echo $rowDesert['id']; ?>"><input type="button" value="<?php echo $lang['add_to_cart']; ?>"/></a>

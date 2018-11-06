@@ -43,7 +43,7 @@ $result = mysqli_query($con,$query);
                     ?>
                     <tbody>
                     <td ><?php echo $row2['name']; ?></td>
-                    <td><?php echo $row2['price']; ?></td>
+                    <td><?php echo $row2['price']. ' ' . $lang['currency']; ?></td>
                     <td><?php echo $row2['delivery_date']; ?></td>
                     <td><?php echo $row2['delivery_time']; ?></td>
                     </tbody>
@@ -66,7 +66,7 @@ $result = mysqli_query($con,$query);
                         <td></td>
                         <td></td>
                         <td style="color: #4ebae3"><b><?php echo $lang['cart_total']; ?></b></td>
-                        <td><?php echo $total; ?></td>
+                        <td><?php echo $total. ' ' . $lang['currency']; ?></td>
                     </tr>
                 </tbody>
                 <?php

@@ -66,6 +66,7 @@ if(isset($_REQUEST['submit'])){
     .subBtn{
         margin-right: 25%;
     }
+    
 </style>
 
 <div class="container">
@@ -93,7 +94,7 @@ if(isset($_REQUEST['submit'])){
             </div><br>
 
             <div class="secBox">
-                    <label ><?php echo $lang['price']; ?></label>
+                    <label ><?php echo $lang['price']; ?> (Saudi Riyal)</label>
                     <input type="number" name="pprice" id="price" min="1" placeholder="<?php echo $lang['enter_product_price']; ?>"/>
             </div><br>
             

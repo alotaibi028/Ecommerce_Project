@@ -15,8 +15,9 @@
 ?>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Productive Families</title>
+    <link href="assets/images/logo.png" rel="shortcut icon" >
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.css">
     <link rel="stylesheet" href="assets/css/jquery.mmenu.all.css">
@@ -51,9 +52,9 @@
                     </p>
                     <div class="dropdown">
                         <?php if($_SESSION['lang'] === 'english'){?>
-                            <a href="?lang=english"><button>English</button></a>
+                            <a href="?lang=english"><button style="height:20px">English</button></a>
                         <?php }else{?>
-                            <a href="?lang=arabic"><button>العربية</button></a>
+                            <a href="?lang=arabic"><button style="height:20px">العربية</button></a>
                         <?php } ?>
                            
                            <?php if(isset($_GET['prodId'])){ ?>
@@ -96,10 +97,12 @@
                         <a href="index.php">
                             <img src="assets/images/logo.png" alt="logo">
                         </a>
+                <h2 id="webname">&nbsp;&nbsp;&nbsp;<?php echo $lang['webname']; ?></h2>
                     </h1>
                     <div class="header-search">
-                        <form action="form.php" class="form form-search-header">
-                            <input type="text" placeholder="<?php echo $lang['search']; ?>...">
+                        
+                        <form action="search.php" method="get" class="form form-search-header">
+                            <input type="text" name="search" required placeholder="<?php echo $lang['search']; ?>...">
                             <button class="button-search"><i class="flaticon-search"></i></button>
                         </form>
                     </div>
@@ -147,8 +150,8 @@
                         <?php }else if(isset($_SESSION['u_id']) && $_SESSION['u_type'] == 'admin'){ ?>
                             <li class="menu-item"><a href="admin/view_users.php">Admin Panel</a></li>
                         <?php } ?>
-                        <li class="menu-item "><a href="#"><?php echo $lang['about_us']; ?></a></li>
-                        <li class="menu-item"><a href="#"><?php echo $lang['contact_us']; ?></a></li>
+                        <li class="menu-item "><a href="aboutus.php"><?php echo $lang['about_us']; ?></a></li>
+                        <li class="menu-item"><a href="contactus.php"><?php echo $lang['contact_us']; ?></a></li>
                     </ul>
                 </nav>
             </div>

@@ -13,6 +13,7 @@ $result = mysqli_query($con,$query);
 
     th,td{
         padding: 10px 20px;
+        text-align:center;
     }
 
 </style>
@@ -28,6 +29,8 @@ $result = mysqli_query($con,$query);
                 <th><?php echo $lang['customer_name']; ?></th>
                 <th><?php echo $lang['wanted_date']; ?></th>
                 <th><?php echo $lang['wanted_time']; ?></th>
+                <th><?php echo $lang['address']; ?></th>
+                <th><?php echo $lang['city']; ?></th>
                 <th><?php echo $lang['quantity']; ?></th>
                 
                 <th><?php echo $lang['order_status']; ?></th>
@@ -42,6 +45,8 @@ $result = mysqli_query($con,$query);
                         <td><?php echo $row['fname']." ".$row['lname']; ?></td>
                         <td><?php echo $row['delivery_date']; ?></td>
                         <td><?php echo $row['delivery_time']; ?></td>
+                        <td><?php echo $row['address']; ?></td>
+                        <td><?php echo $row['city']; ?></td>
                         <td><?php echo $row['quantity']; ?></td>
                         
                         <td><?php echo $row['order_status']; ?></td>

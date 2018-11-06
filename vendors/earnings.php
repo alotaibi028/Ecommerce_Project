@@ -27,7 +27,7 @@ $earnings = $row2['total_earnings'];
 <div class="container">
     <section style="width: 80%; margin-left: 10%; margin-right:10%; margin-top: 5%">
        <p>Total Earnings</p><br>
-        <h1>$<?php echo $earnings; ?></h1><br>
+        <h1><?php echo $earnings . ' ' . $lang['currency']?></h1><br>
         <table>
 
             <thead>
