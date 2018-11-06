@@ -93,14 +93,16 @@ $vendorArray = array();
                     $result = mysqli_query($con, $sql);
                     $row = $result ->fetch_array();
                     $item_price = $item["quantity"]*$item["price"];
-					
+					print_r($row);
 					$vendorID = $row['added_by'];
 					
 					$sqlVendor = " SELECT * FROM users WHERE id=" . $vendorID;
 					$resultVendor = mysqli_query($con, $sqlVendor);
 					$rowVendor = $resultVendor->fetch_array();
-					$vendorEmail = $rowVendor['email'];
+					print_r($rowVendor);
+					echo $vendorEmail = $rowVendor['email'];
 						
+						exit;
 					if($_SESSION['lang'] == 'arabic'){ $pname = $rowVendor['name_ar']; }else{ $pname =  $rowVendor['name'];};
 					$total_quantitys += $item["quantity"];
                     $total_prices += ($item["price"]*$item["quantity"]);
