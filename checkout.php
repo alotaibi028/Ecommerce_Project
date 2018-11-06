@@ -86,6 +86,7 @@ mail($to,$email_subject,$email_body,$headers);
 $vendorArray = array();
 
 			foreach ($_SESSION["cart_item"] as $item){
+				
 				  $total_quantitys = 0;
             $total_prices = 0;
                     $item_price = $item["quantity"]*$item["price"];
@@ -93,16 +94,15 @@ $vendorArray = array();
                     $result = mysqli_query($con, $sql);
                     $row = $result ->fetch_array();
                     $item_price = $item["quantity"]*$item["price"];
-					print_r($row);
+					
 					$vendorID = $row['added_by'];
 					
 					$sqlVendor = " SELECT * FROM users WHERE id=" . $vendorID;
 					$resultVendor = mysqli_query($con, $sqlVendor);
 					$rowVendor = $resultVendor->fetch_array();
-					print_r($rowVendor);
-					echo $vendorEmail = $rowVendor['email'];
-						
-						exit;
+					
+					$vendorEmail = $rowVendor['email'];
+					
 					if($_SESSION['lang'] == 'arabic'){ $pname = $rowVendor['name_ar']; }else{ $pname =  $rowVendor['name'];};
 					$total_quantitys += $item["quantity"];
                     $total_prices += ($item["price"]*$item["quantity"]);
