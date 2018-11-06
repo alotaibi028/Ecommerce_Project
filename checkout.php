@@ -67,11 +67,11 @@ $email_subject = "Congratulation Your order has been placed";
                     $item_price = $item["quantity"]*$item["price"];
 					if($_SESSION['lang'] == 'arabic'){ $pname = $row['name_ar']; }else{ $pname =  $row['name'];};
 				
-			$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "$ ".$item["price"] .'</td><td  style="text-align:right;">'. "$ ". number_format($item_price,2).'</td></tr>';
+			$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "SR ".$item["price"] .'</td><td  style="text-align:right;">'. "SR". number_format($item_price,2).'</td></tr>';
 				}
 				$total_quantitys += $item["quantity"];
                     $total_prices += ($item["price"]*$item["quantity"]);
-			$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "$ ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
+			$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "SR ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
 			$email_body .= "</body></html>";
 			
 			$headers = "From: otaibimk1428@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
@@ -112,7 +112,7 @@ $vendorArray = array();
 			$email_body .= '<th style="text-align:left;">'.$lang['name'].'</th><th style="text-align:right;" width="5%">'. $lang['quantity'].'</th><th style="text-align:right;" width="25%">'. $lang['unit_price'].'</th><th style="text-align:right;" width="25%">'. $lang['price'].'</th> </tr>';
 				
 					$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "SR ".$item["price"] .'</td><td  style="text-align:right;">'. "SR ". number_format($item_price,2).'</td></tr>';
-				$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "$ ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
+				$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "SR ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
 			$email_body .= "</body></html>";
 			
 					$headers = "From: otaibimk1428@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
