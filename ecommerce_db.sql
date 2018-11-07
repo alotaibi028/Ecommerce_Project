@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 05, 2018 at 11:50 PM
--- Server version: 10.0.37-MariaDB
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Nov 07, 2018 at 02:13 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `corex_depypay`
+-- Database: `ecommerce_db`
 --
 
 -- --------------------------------------------------------
@@ -354,29 +354,23 @@ CREATE TABLE `users` (
   `lname` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `type` enum('admin','vendor','customer') CHARACTER SET latin1 NOT NULL
+  `type` enum('admin','vendor','customer') CHARACTER SET latin1 NOT NULL,
+  `secretanswer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `type`) VALUES
-(6, 'hassan', 'shahid', 'hassanrrs@gmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'admin'),
-(7, 'anas', 'siddiqui', 'anassiddiqui288@gmail.com', 'anas1234', 'customer'),
-(8, 'anas', 'siddiqui', 'anassiddiqui29@gmail.com', 'anas1234', 'vendor'),
-(9, 'Ali', 'ALOTAIBI', 'm7med.k.m@hotmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'vendor'),
-(10, 'fa', 'fa', 'otaibimk1428@gmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'customer'),
-(11, 'toto', 'toto', 'toto@hotmail.com', '1234', 'vendor'),
-(12, 'bobo', 'bobo', 'bobo@hotmail.com', '1234', 'customer'),
-(16, 'anas', 'siddiqui', 'anassiddiqui278@gmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'customer'),
-(17, 'fatin', 'fatin', 'fatin@hotmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'vendor'),
-(20, '?????', '????', 'h@hotmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'customer'),
-(21, 'asdasd', 'الاسم ', 'anassiddiqui22328@gmail.com', '$1$somethin$qHoAEkCp9u2ozGeidRYox1', 'customer'),
-(22, 'الاسم ', 'الاسم ', 'anassiddiqui27ada8@gmail.com', '$1$somethin$qHoAEkCp9u2ozGeidRYox1', 'customer'),
-(23, 'الاسم', 'الكنية', 'asda@gmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'customer'),
-(24, 'محمد ', 'محمد', 'F@hotmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'customer'),
-(25, 'الاسم ', 'الكنية', 'anassiddiqui278@gmail.comasd', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'customer');
+INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `type`, `secretanswer`) VALUES
+(6, 'hassan', 'shahid', 'hassanrrs@gmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'admin', ''),
+(7, 'anas', 'siddiqui', 'anassiddiqui288@gmail.com', 'anas1234', 'customer', ''),
+(8, 'anas', 'siddiqui', 'anassiddiqui29@gmail.com', 'anas1234', 'vendor', ''),
+(9, 'Ali', 'ALOTAIBI', 'm7med.k.m@hotmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'vendor', ''),
+(10, 'fa', 'fa', 'otaibimk1428@gmail.com', '$1$somethin$COEJ0zKut7beTen0WfTr2/', 'customer', ''),
+(11, 'toto', 'toto', 'toto@hotmail.com', '1234', 'vendor', ''),
+(12, 'bobo', 'bobo', 'bobo@hotmail.com', '1234', 'customer', ''),
+(27, 'anas', 'siddiqui', 'anassiddiqui278@gmail.com', '$1$somethin$RyP7gl4eGmi0yv9iiaj.F0', 'customer', 'biryani');
 
 --
 -- Indexes for dumped tables
@@ -470,7 +464,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables

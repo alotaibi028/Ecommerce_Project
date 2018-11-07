@@ -143,4 +143,9 @@ $lang = array(
 	'delete'=>'Delete',
 	'currency'=>'SR',
 	'webname'=>'Cottage Industry Virtual Market',
+	'secret'=>'Secret Question',
+	'question'=>'What is your favorite food?',
+	'fp'=>'Forget Password',
+	'answer'=>'Answer of Secret Question',
+	'changepassword'=>'Change Password',
 );

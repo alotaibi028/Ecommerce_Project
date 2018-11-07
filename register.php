@@ -8,6 +8,8 @@ if(isset($_REQUEST['submit'])){
     $userEmail = mysqli_real_escape_string($con, $_REQUEST['uemail']);
     $userPass = mysqli_real_escape_string($con, $_REQUEST['upass']);
     $userCpass = mysqli_real_escape_string($con, $_REQUEST['ucpass']);
+    $usersecret = mysqli_real_escape_string($con, $_POST['usersecret']);
+	
     if(isset($_REQUEST['utype'])){
         $userType = 'vendor';
     }else{
@@ -24,7 +26,7 @@ if(isset($_REQUEST['submit'])){
         $error = 'Passwords doesnt match';
     }else{
             $userfPass =  crypt($_REQUEST['upass'], '$1$somethin$');
-        $query3 = "insert into users (id,fname,lname,email,password,type) values (0,'" . $userFname . "','" . $userLname . "','" . $userEmail . "','" . $userfPass . "','" . $userType . "')";
+        $query3 = "insert into users (id,fname,lname,email,password,type,secretanswer) values (0,'" . $userFname . "','" . $userLname . "','" . $userEmail . "','" . $userfPass . "','" . $userType . "','" . $usersecret . "')";
 
         if (mysqli_query($con, $query3)){
             $last_id = $con->insert_id;
@@ -81,6 +83,8 @@ if(isset($_REQUEST['submit'])){
                 <input type="password" name="upass" pattern=".{4,}" title="Four or more characters" required="required" placeholder="<?php echo $lang['enter_pass']; ?>"/><br><br>
                 <label><?php echo $lang['confirm_password']; ?>:*</label>
                 <input type="password" name="ucpass" pattern=".{4,}" title="Four or more characters" required="required" placeholder="<?php echo $lang['rewrite_pass']; ?>"/><br><br>
+                 <label><?php echo $lang['secret']; ?>:*</label>
+                <input type="text" name="usersecret" required="required" placeholder="<?php echo $lang['question']; ?>"/><br><br>
                 <input type="checkbox" style="margin-left: 80px" name="utype" value=""><?php echo $lang['check']; ?><br>
                 <label style="color:red;<?php if(isset($_GET['n'])){ echo 'display:block';}else{ echo 'display:none';}?>">
                     Successfully Registered !!</label><br>

@@ -1,6 +1,7 @@
 <?php include 'includes/config.php';
 ob_start();
 include 'header.php';
+			unset($_SESSION['cuemail']);
 
 
 if(isset($_REQUEST['submit'])){
@@ -52,8 +53,11 @@ if(isset($_REQUEST['submit'])){
             <input type="email" name="uemail" placeholder="<?php echo $lang['enter_email']; ?>"/><br><br>
             <label><?php echo $lang['password']; ?>:*</label>
             <input type="password" name="upass" placeholder="<?php echo $lang['enter_pass']; ?>"/><br>
+           <small style="float:right;font-size:13px;margin-top:10px;"><a href="forgetpassword.php">Forget Password?</a></small>
+
             <label style="color:red;<?php if(isset($_GET['n'])){ echo 'display:block';}else{ echo 'display:none';}?>">
                 <?php echo $lang['invalid_email']; ?> !!</label><br>
+                
             <input type="submit" id="loginBtn" name="submit" value="<?php echo $lang['login']; ?>"/><br>
         </form>
         </center>
