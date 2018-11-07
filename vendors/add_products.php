@@ -75,37 +75,37 @@ if(isset($_REQUEST['submit'])){
         <form method="post" id="addForm" action="add_products.php" enctype="multipart/form-data">
 
             <div class="secBox">
-                <label style="margin-right: 0% !important;"><?php echo 'Product Name' ?>:</label>
+                <label style="margin-right: 0% !important;"><?php echo 'Product Name' ?>:*</label>
                 <input type="text" id="name" name="pname" dir="ltr" placeholder="<?php echo 'Enter Product Name'; ?>"/>
             </div><br>
             <div class="secBox">
-                <label style="margin-right: 0% !important;"><?php echo 'اسم المنتج' ?>:</label>
+                <label style="margin-right: 0% !important;">*<?php echo 'اسم المنتج' ?>:</label>
                 <input type="text" id="name" dir="rtl" name="pname_ar" placeholder="<?php echo 'أدخل اسم المنتج'; ?>"/>
             </div>
             <br>
 
             <div class="secBox">
-                <label   style="margin-right: 0% !important;"><?php echo 'Description'; ?>:</label>
+                <label   style="margin-right: 0% !important;"><?php echo 'Description'; ?>:*</label>
                 <textarea id="desc" name="pdesc" dir="ltr" placeholder="<?php echo 'Enter Product Description'; ?>"></textarea>
             </div><br>
             <div class="secBox">
-                <label   style="margin-right: 0% !important;"><?php echo 'وصف'; ?>:</label>
+                <label   style="margin-right: 0% !important;">*<?php echo 'وصف'; ?>:</label>
                 <textarea id="desc" name="pdesc_ar" dir="rtl" placeholder="<?php echo 'أدخل وصف المنتج'; ?>"></textarea>
             </div><br>
 
             <div class="secBox">
-                    <label ><?php echo $lang['price']; ?> (Saudi Riyal)</label>
+                    <label ><?php echo $lang['price']; ?> (Saudi Riyal)*</label>
                     <input type="number" name="pprice" id="price" min="1" placeholder="<?php echo $lang['enter_product_price']; ?>"/>
             </div><br>
             
 
             <div class="secBox">
-                <label><?php echo $lang['product_image']; ?>:</label>
+                <label><?php echo $lang['product_image']; ?>:*</label>
                 <input type="file" id="prodImg" name="pimg"/>
             </div><br>
 
             <div  class="secBox">
-                <label><?php echo $lang['product_type']; ?>:</label>
+                <label><?php echo $lang['product_type']; ?>:*</label>
                 <select style="height: auto" name="ptype">
                     <?php
                         while($row = $result -> fetch_array()){
@@ -116,7 +116,7 @@ if(isset($_REQUEST['submit'])){
             </div><br>
 
             <div  class="secBox">
-                <label><?php echo $lang['available_stock']; ?>:</label>
+                <label><?php echo $lang['available_stock']; ?>:*</label>
                 <input type="number" name="pstock" min="1">
             </div><br>
 
