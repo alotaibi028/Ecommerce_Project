@@ -1,5 +1,13 @@
+<?php
+error_reporting(1);
+ini_set('display_errors', 1);
+?>
 <?php include 'includes/config.php';
 include 'header.php';
+
+if(!isset($_SESSION['u_id'])){
+    header('location:login.php?ref=checkout');
+}
 
 if(isset($_REQUEST['stripeToken'])){
     $address2 ="";
@@ -188,4 +196,8 @@ $vendorArray = array();
                     
                 }
             }
+			
+			
+			
+			echo "You cannot access this page. 403 Forbidden";
 
