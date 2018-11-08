@@ -96,7 +96,7 @@ if(isset($_REQUEST['stripeToken'])){
 
                 // email
 // Create the email and send the message
-echo $to =strip_tags($_SESSION['u_email']); // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
+$to =strip_tags($_SESSION['u_email']); // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
 $email_subject = "Congratulation Your order has been placed";
  // PREPARE THE BODY OF THE MESSAGE
  // Customer Email
@@ -126,9 +126,9 @@ $email_subject = "Congratulation Your order has been placed";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 			$headers .= "X-Mailer: PHP/".phpversion();   
-			echo $email_body;
+			
 mail($to,$email_subject,$email_body,$headers);
-exit;
+
 
 // Vendor Email
 $vendorArray = array();
