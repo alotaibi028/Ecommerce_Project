@@ -26,11 +26,14 @@ if(isset($_REQUEST['checkout'])){
         $_SESSION['checkout_city'] = $city;
         $_SESSION['checkout_country'] = $country;
         $_SESSION['checkout_phone'] = $phone;
+		$sql = "INSERT INTO orders VALUES (0,".$cust_id.",'".$address."','".$address2."','".$city."','".$country."',
+                ".$phone.",'".$pay_method."','".$order_date."','".$order_status."')";
 //        header('location: processing.php');
         echo "<script>alert('Not Yet Completed');</script>";
     }else{
         $sql = "INSERT INTO orders VALUES (0,".$cust_id.",'".$address."','".$address2."','".$city."','".$country."',
                 ".$phone.",'".$pay_method."','".$order_date."','".$order_status."')";
+	}
         if(mysqli_query($con,$sql)) {
             $last_id = $con->insert_id;
             
@@ -47,6 +50,9 @@ if(isset($_REQUEST['checkout'])){
                         ".$t_price.",'".$p_date."','".$p_time."','".$c_ingred."')";
                 mysqli_query($con, $sql2);
             }
+		}
+
+			
 			// email
 // Create the email and send the message
 $to =strip_tags($_SESSION['u_email']); // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
@@ -134,8 +140,8 @@ $vendorArray = array();
             echo 'window.location.href="orderstatus.php";';
             echo '</script>';
         }
-    }
-}
+    
+
 
 
 ?>
