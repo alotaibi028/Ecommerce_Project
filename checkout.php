@@ -1,3 +1,7 @@
+<?php
+error_reproting(1);
+ini_set('display_errors', 1);
+?>
 
 
 <?php include 'includes/config.php';
