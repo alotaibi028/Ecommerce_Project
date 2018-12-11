@@ -2,7 +2,7 @@
 
 
 $db_host = "localhost";
-$db_username = "cottage_ecommerc";
+$db_username = "root";
 $db_password = "7606MA";
 $db_name = "db";
 
