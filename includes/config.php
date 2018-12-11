@@ -3,8 +3,8 @@
 
 $db_host = "localhost";
 $db_username = "cottage_ecommerc";
-$db_password = "ecommerce@123";
-$db_name = "cottageindustryvirtualmarket_ecommerce";
+$db_password = "7606MA";
+$db_name = "db";
 
 $con = mysqli_connect($db_host,$db_username,$db_password,$db_name);
 
