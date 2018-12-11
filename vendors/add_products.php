@@ -94,8 +94,8 @@ if(isset($_REQUEST['submit'])){
             </div><br>
 
             <div class="secBox">
-                    <label ><?php echo $lang['price']; ?> (Saudi Riyal)*</label>
-                    <input type="number" name="pprice" id="price" min="1" placeholder="<?php echo $lang['enter_product_price']; ?>"/>
+                    <label ><?php echo $lang['price']; ?> ($)*</label>
+                    <input type="text" name="pprice" id="price" min="1" placeholder="<?php echo $lang['enter_product_price']; ?>"/>
             </div><br>
             
 

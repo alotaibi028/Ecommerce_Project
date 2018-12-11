@@ -9,6 +9,8 @@ if(!isset($_SESSION['u_id'])){
     header('location:login.php?ref=checkout');
 }
 
+
+
 if(isset($_REQUEST['stripeToken'])){
     $address2 ="";
     $token = $_REQUEST['stripeToken'];
@@ -38,17 +40,21 @@ if(isset($_REQUEST['stripeToken'])){
                 $sql2 = "INSERT INTO order_products VALUES (".$last_id.",".$prod_id.",".$quantity.",".$u_price.",
                         ".$t_price.",'".$p_date."','".$p_time."','".$c_ingred."')";
                 mysqli_query($con, $sql2);
-                //unset($_SESSION["cart_item"]);
+               
             }
             
+			/* this is the stripe file you had downloaded where all codes to connect to stripe is written */
             require_once('stripe-php/init.php');
+			/* adding stripe keys */
             $stripe = array(
               "secret_key"      => "sk_test_lokJqoiQrf961Dif9EtDVysy",
               "publishable_key" => "pk_test_rZOYz6k0yWkz494YXqUCZb4b"
             );
-
+			
+			/* setting stripe secret key */
             \Stripe\Stripe::setApiKey($stripe['secret_key']);
-            
+			
+			/*Stripe related code. */
             $customer = \Stripe\Customer::create(array(
                 'id' => time(),
                 'source'  => $token
@@ -62,7 +68,7 @@ if(isset($_REQUEST['stripeToken'])){
             $currency = "USD";
             $orderID = "";
 
-            //charge a credit or a debit card
+            //charge a credit or a debit card. Stripe related code
             $charge = \Stripe\Charge::create(array(
                 'customer' => $customer->id,
                 'amount'   => $itemPrice,
@@ -114,11 +120,11 @@ $email_subject = "Congratulation Your order has been placed";
                     $item_price = $item["quantity"]*$item["price"];
 					if($_SESSION['lang'] == 'arabic'){ $pname = $row['name_ar']; }else{ $pname =  $row['name'];};
 				
-			$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "SR ".$item["price"] .'</td><td  style="text-align:right;">'. "SR". number_format($item_price,2).'</td></tr>';
+			$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "$ ".$item["price"] .'</td><td  style="text-align:right;">'. "$". number_format($item_price,2).'</td></tr>';
 				}
 				$total_quantitys += $item["quantity"];
                     $total_prices += ($item["price"]*$item["quantity"]);
-			$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "SR ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
+			$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "$ ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
 			$email_body .= "</body></html>";
 			
 			$headers = "From: otaibimk1428@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
@@ -149,7 +155,7 @@ $vendorArray = array();
 					$resultVendor = mysqli_query($con, $sqlVendor);
 					$rowVendor = $resultVendor->fetch_array();
 					
-					$vendorEmail = $rowVendor['email'];
+					echo $vendorEmail = $rowVendor['email'];
 					
 					if($_SESSION['lang'] == 'arabic'){ $pname = $rowVendor['name_ar']; }else{ $pname =  $rowVendor['name'];};
 					$total_quantitys += $item["quantity"];
@@ -159,8 +165,8 @@ $vendorArray = array();
 			$email_body .= '<div style="background-color: gainsboro"><table class="tbl-cart" cellpadding="10" style="margin-left: 10%" cellspacing="1"><tbody><tr>';
 			$email_body .= '<th style="text-align:left;">'.$lang['name'].'</th><th style="text-align:right;" width="5%">'. $lang['quantity'].'</th><th style="text-align:right;" width="25%">'. $lang['unit_price'].'</th><th style="text-align:right;" width="25%">'. $lang['price'].'</th> </tr>';
 				
-					$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "SR ".$item["price"] .'</td><td  style="text-align:right;">'. "SR ". number_format($item_price,2).'</td></tr>';
-				$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "SR ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
+					$email_body .= '<tr><td>'.$pname.'</td><td style="text-align:right;">'. $item["quantity"].'</td><td  style="text-align:right;">'. "$ ".$item["price"] .'</td><td  style="text-align:right;">'. "$ ". number_format($item_price,2).'</td></tr>';
+				$email_body .= ' <tr><td colspan="1" align="right">'. $lang['total'].' </td><td align="right">'. $total_quantity.' </td><td align="right" colspan="2"><strong>'. "$ ".number_format($total_price, 2).' </strong></td><td></td></tr></tbody></table>';
 			$email_body .= "</body></html>";
 			
 					$headers = "From: otaibimk1428@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.

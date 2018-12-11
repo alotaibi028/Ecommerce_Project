@@ -32,7 +32,7 @@ $result = mysqli_query($con,$query);
                 <th><?php echo $lang['address']; ?></th>
                 <th><?php echo $lang['city']; ?></th>
                 <th><?php echo $lang['quantity']; ?></th>
-                
+                <th><?php echo $lang['shipping']; ?></th>
                 <th><?php echo $lang['order_status']; ?></th>
             </thead>
             <?php
@@ -48,7 +48,11 @@ $result = mysqli_query($con,$query);
                         <td><?php echo $row['address']; ?></td>
                         <td><?php echo $row['city']; ?></td>
                         <td><?php echo $row['quantity']; ?></td>
-                        
+                        <td><?php if($row['pay_method'] == 0){
+                            echo 'Pay On Delivery';
+                        }else{
+                            echo 'Paid Online';
+                        }?></td>
                         <td><?php echo $row['order_status']; ?></td>
                         </tbody>
                         <?php
